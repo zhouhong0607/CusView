@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="test_matrix_method">
+        <item>default</item>
+        <item>pre</item>
+        <item>post</item>
+        <item>concat</item>
+        <item>rotateP</item>
+    </string-array>
+</resources>

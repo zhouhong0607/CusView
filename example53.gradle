@@ -1,0 +1,10 @@
+apply plugin : Ex53CustomPlugin
+
+class Ex53CustomPlugin implements Plugin<Project>{
+    @Override
+    void apply(Project target) {
+        target.task('ex53CustomTask') <<{
+            println "这是一个自定义插件"
+        }
+    }
+}

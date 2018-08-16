@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.macroz.myapplication.customview.view.MatrixTestView
+        android:id="@+id/matrix_test_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/matrix_method_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Spinner
+            android:id="@+id/matrix_select_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text=""
+            android:entries="@array/test_matrix_method"
+            />
+
+
+
+        <Button
+            android:id="@+id/matrix_apply_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="apply"
+            />
+
+        <Button
+            android:id="@+id/matrix_center_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="center"
+            />
+
+
+        <Button
+            android:id="@+id/matrix_reset_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="reset"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
