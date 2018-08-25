@@ -12,28 +12,25 @@ public class MatrixMethodDefine {
     /**
      * 什么也不做
      */
-    public static final int MATRIX_TEST_METHOD_DEFAULT=0;
+    public static final int MATRIX_TEST_METHOD_DEFAULT = 0;
 
     /**
      * 测试   pre
      */
-    public static final int MATRIX_TEST_METHOD_PRE=1;
+    public static final int MATRIX_TEST_METHOD_PRE = 1;
 
     /**
      * 测试   post
      */
-    public static final int MATRIX_TEST_METHOD_POST=2;
+    public static final int MATRIX_TEST_METHOD_POST = 2;
     /**
      * 测试  canvas  concat()方法
      */
-    public static final int MATRIX_TEST_METHOD_CANVAS_CONCAT=3;
+    public static final int MATRIX_TEST_METHOD_CANVAS_CONCAT = 3;
     /**
      * 测试基于某一点的旋转
      */
-    public static final int MATRIX_TEST_METHOD_ROTATE_BY_POINT=4;
-
-
-
+    public static final int MATRIX_TEST_METHOD_ROTATE_BY_POINT = 4;
 
 
 }

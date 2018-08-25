@@ -11,11 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:windowSoftInputMode="adjustPan">
-        <activity
-            android:name=".activity.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +22,15 @@
         <activity android:name=".activity.Main4Activity" />
         <activity android:name=".activity.ScrollActivity" />
         <activity android:name=".customview.activity.CameraTestActivity" />
-        <activity android:name=".customview.activity.MatrixTestActivity" />
-        <activity android:name=".customview.activity.PlaneRotateActivity"></activity>
+        <activity android:name=".customview.activity.MatrixPrePostTestActivity" />
+        <activity android:name=".customview.activity.PlaneRotateActivity" />
+        <activity android:name=".customview.activity.CubeActivity" />
+        <activity android:name=".newsapptest.activity.FlexLayoutTestActivity" />
+        <activity android:name=".customview.activity.MatrixApiTestActivity" />
+        <activity android:name=".newsapptest.activity.LottieTestActivity" />
+        <activity android:name=".customview.activity.PolyToPolyTestActivity" />
+        <activity android:name=".customview.activity.FoldLayoutTestActivity" />
+        <activity android:name=".customview.activity.Rotate3DTestActivity"></activity>
     </application>
 
 </manifest>

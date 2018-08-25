@@ -1,10 +1,6 @@
 package com.example.macroz.myapplication.activity;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.toolbox.Volley;
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.Utils;
-import com.example.macroz.myapplication.view.MyFoldLayout;
-import com.example.macroz.myapplication.view.MyView;
+import com.example.macroz.myapplication.customview.view.MyFoldLayout;
+import com.example.macroz.myapplication.customview.view.PolygonView;
 
 public class Main4Activity extends AppCompatActivity {
 
@@ -28,7 +21,7 @@ public class Main4Activity extends AppCompatActivity {
 
     private ViewGroup container;
 
-    private MyView myView;
+    private PolygonView mPolygonView;
     private RadioGroup radioGroup;
 
     private ImageView mImageView;

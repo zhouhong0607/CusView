@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customview.activity.MatrixApiTestActivity">
+
+    <com.example.macroz.myapplication.customview.view.MatrixApiTextView
+        android:id="@+id/matrix_api_test_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <!--方法-->
+        <RadioGroup
+            android:id="@+id/radio_group_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_method_translate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="translate" />
+
+            <RadioButton
+                android:id="@+id/radio_method_rotate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="rotate" />
+
+            <RadioButton
+                android:id="@+id/radio_method_scale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Scale" />
+
+            <RadioButton
+                android:id="@+id/radio_method_skew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Skew" />
+        </RadioGroup>
+
+        <!--x,y,value-->
+        <LinearLayout
+            android:id="@+id/input_type_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--X 输入-->
+            <TextView
+                android:id="@+id/input_textview_x"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="X:" />
+
+            <EditText
+                android:id="@+id/input_edit_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!--Y 输入-->
+            <TextView
+                android:id="@+id/input_textview_y"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="Y:" />
+
+            <EditText
+                android:id="@+id/input_edit_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!--Degree 输入-->
+            <TextView
+                android:id="@+id/input_textview_degree"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="D:" />
+
+            <EditText
+                android:id="@+id/input_edit_degree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+        <!--操作-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_apply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="APPLY" />
+
+            <Button
+                android:id="@+id/button_center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CENTER" />
+
+            <Button
+                android:id="@+id/button_reset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RESET" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

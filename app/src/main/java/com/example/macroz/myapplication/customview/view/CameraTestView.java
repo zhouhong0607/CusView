@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,30 +17,22 @@ import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 
+import java.text.DecimalFormat;
+
 /**
- * 类描述:
+ * 类描述:   测试camera基本api
  * 创建人:   macroz
  * 创建时间: 2018/8/13 上午11:15
  * 修改人:   macroz
  * 修改时间: 2018/8/13 上午11:15
  * 修改备注:
  */
-public class CameraTestView extends View {
-    private static final String TAG = "CameraTestView";
-    private Bitmap mBitmap;
-    private Paint mPaint;
-    private Matrix mMatrix;
+public class CameraTestView extends BaseMatrixView {
+
     private Camera mCamera;
 
     public CameraTestView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
-    }
-
-    private void init() {
-        mBitmap = Utils.getBitmap(getResources(), R.drawable.page1);
-        mPaint = new Paint();
-        mMatrix = new Matrix();
         mCamera = new Camera();
     }
 
@@ -48,11 +42,10 @@ public class CameraTestView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onSubDraw(Canvas canvas) {
         mCamera.applyToCanvas(canvas);
-        canvas.drawBitmap(mBitmap, 0,0, mPaint);
+        canvas.drawBitmap(mBitmap, 0, 0, mPaint);
     }
-
 
     /**
      * translate 方法测试
@@ -63,7 +56,6 @@ public class CameraTestView extends View {
      */
     public void translate(float x, float y, float z) {
         mCamera.translate(x, y, z);
-        printMatrix();
     }
 
 
@@ -74,7 +66,6 @@ public class CameraTestView extends View {
      */
     public void rotateX(float xDeg) {
         mCamera.rotateX(xDeg);
-        printMatrix();
     }
 
     /**
@@ -84,7 +75,6 @@ public class CameraTestView extends View {
      */
     public void rotateY(float yDeg) {
         mCamera.rotateY(yDeg);
-        printMatrix();
     }
 
     /**
@@ -94,7 +84,6 @@ public class CameraTestView extends View {
      */
     public void rotateZ(float zDeg) {
         mCamera.rotateZ(zDeg);
-        printMatrix();
     }
 
     /**
@@ -135,36 +124,30 @@ public class CameraTestView extends View {
 
         Log.e(TAG, "after Location x , y , z :" + "( " + curX + " " + curY + " " + curZ + " )");
 
-        printMatrix();
     }
 
 
-    /**
-     * 保存camera状态
-     */
-    public void saveCamera() {
-        mCamera.save();
-    }
-
-    /**
-     * 回滚Camera状态
-     */
-    public void restoreCamera() {
-        mCamera.restore();
-        invalidate();
-    }
+//    /**
+//     * 保存camera状态
+//     */
+//    public void saveCamera() {
+//        mCamera.save();
+//    }
+//
+//    /**
+//     * 回滚Camera状态
+//     */
+//    public void restoreCamera() {
+//        mCamera.restore();
+//        invalidate();
+//    }
 
     /**
      * 重置camera状态
      */
-    public void resetCamera() {
+    public void reset() {
+        super.reset();
         mCamera = new Camera();
-        invalidate();
-    }
-
-    public void printMatrix() {
-        mCamera.getMatrix(mMatrix);
-        Log.e(TAG, "matrix: " + mMatrix.toShortString());
     }
 
 

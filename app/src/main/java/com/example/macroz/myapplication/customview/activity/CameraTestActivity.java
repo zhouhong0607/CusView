@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -23,13 +25,26 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
     private int curSelectMethod = RadioDefine.RADIO_GROUP_METHOD_TRANSLATE;
     private int curSelectCoordinate = RadioDefine.RADIO_GROUP_COORDINATE_X;
     private float inputValue = 0.0f;
-
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_test);
         initViews();
+        getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (editText != null) {
+                    //降下软键盘,设置editText不选中
+                    editText.clearFocus();
+                    editText.setSelected(false);
+//                    InputMethodManager imm=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+//                    imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
+                }
+                return false;
+            }
+        });
     }
 
     private void initViews() {
@@ -79,7 +94,7 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
 
     private void initOthers() {
         //输入框
-        EditText editText = findViewById(R.id.edit_input);
+        editText = findViewById(R.id.edit_input);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -88,10 +103,8 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Utils.isNumeric(s.toString())) {
-                    inputValue = Float.parseFloat(s.toString());
-                    Log.e(TAG, "inputValue changed : " + inputValue);
-                }
+                inputValue = Utils.String2Num(s.toString());
+                Log.e(TAG, "inputValue changed : " + Utils.String2Num(s.toString()));
             }
 
             @Override
@@ -105,6 +118,9 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
 
         Button resetButton = findViewById(R.id.button_reset);
         resetButton.setOnClickListener(this);
+
+        Button centerButton = findViewById(R.id.button_center);
+        centerButton.setOnClickListener(this);
     }
 
 
@@ -117,6 +133,9 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
             case R.id.button_reset:
                 resetCameraView();
                 break;
+            case R.id.button_center:
+                mCameraTestView.setCenter();
+                break;
         }
     }
 
@@ -126,15 +145,15 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
             switch (curSelectCoordinate) {
                 case RadioDefine.RADIO_GROUP_COORDINATE_X:
                     mCameraTestView.translate(inputValue, 0, 0);
-                    Log.e(TAG, "translate X : " +inputValue  );
+                    Log.e(TAG, "translate X : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Y:
                     mCameraTestView.translate(0, inputValue, 0);
-                    Log.e(TAG, "translate Y : " +inputValue  );
+                    Log.e(TAG, "translate Y : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Z:
                     mCameraTestView.translate(0, 0, inputValue);
-                    Log.e(TAG, "translate Z : " +inputValue  );
+                    Log.e(TAG, "translate Z : " + inputValue);
                     break;
             }
         } else if (curSelectMethod == RadioDefine.RADIO_GROUP_METHOD_ROTATE) {
@@ -142,29 +161,29 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
             switch (curSelectCoordinate) {
                 case RadioDefine.RADIO_GROUP_COORDINATE_X:
                     mCameraTestView.rotateX(inputValue);
-                    Log.e(TAG, "rotate X : " +inputValue  );
+                    Log.e(TAG, "rotate X : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Y:
                     mCameraTestView.rotateY(inputValue);
-                    Log.e(TAG, "rotate Y : " +inputValue  );
+                    Log.e(TAG, "rotate Y : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Z:
                     mCameraTestView.rotateZ(inputValue);
-                    Log.e(TAG, "rotate Z : " +inputValue  );
+                    Log.e(TAG, "rotate Z : " + inputValue);
                     break;
             }
         } else if (curSelectMethod == RadioDefine.RADIO_GROUP_METHOD_SET_LOCATION) {
             //设置坐标
-            mCameraTestView.setLocation(inputValue,curSelectCoordinate);
+            mCameraTestView.setLocation(inputValue, curSelectCoordinate);
             switch (curSelectCoordinate) {
                 case RadioDefine.RADIO_GROUP_COORDINATE_X:
-                    Log.e(TAG, "setLocation X : " +inputValue  );
+                    Log.e(TAG, "setLocation X : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Y:
-                    Log.e(TAG, "setLocation Y : " +inputValue  );
+                    Log.e(TAG, "setLocation Y : " + inputValue);
                     break;
                 case RadioDefine.RADIO_GROUP_COORDINATE_Z:
-                    Log.e(TAG, "setLocation Z : " +inputValue  );
+                    Log.e(TAG, "setLocation Z : " + inputValue);
                     break;
             }
         }
@@ -174,8 +193,7 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void resetCameraView() {
-        mCameraTestView.resetCamera();
-        Log.e(TAG, "resetCameraView（） "  );
+        mCameraTestView.reset();
     }
 
 }

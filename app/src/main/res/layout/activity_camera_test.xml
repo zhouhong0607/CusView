@@ -9,23 +9,20 @@
         android:id="@+id/camera_test_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
         <!--方法-->
         <RadioGroup
             android:id="@+id/radio_group_method"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radio_method_translate"
@@ -33,30 +30,28 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="translate"
-                />
+                android:text="translate" />
+
             <RadioButton
                 android:id="@+id/radio_method_rotate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="rotate"
-                />
+                android:text="rotate" />
+
             <RadioButton
                 android:id="@+id/radio_method_location"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="setLocation"
-                />
+                android:text="setLocation" />
         </RadioGroup>
         <!--坐标-->
         <RadioGroup
             android:id="@+id/radio_group_coordinate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radio_coordinate_x"
@@ -64,53 +59,57 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="X"
-                />
+                android:text="X" />
+
             <RadioButton
                 android:id="@+id/radio_coordinate_y"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Y"
-                />
+                android:text="Y" />
+
             <RadioButton
                 android:id="@+id/radio_coordinate_z"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Z"
-                />
+                android:text="Z" />
         </RadioGroup>
 
         <!--操作-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edit_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/button_apply"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="APPLY"
-                />
+                android:text="APPLY" />
+
+            <Button
+                android:id="@+id/button_center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CENTER" />
 
             <Button
                 android:id="@+id/button_reset"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="RESET"
-                />
+                android:text="RESET" />
 
         </LinearLayout>
 

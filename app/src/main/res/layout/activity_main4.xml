@@ -19,7 +19,7 @@
         <!--android:background="@drawable/ripple_test"-->
         <!--android:text="lalalalalalallalala"-->
         <!--android:clickable="true"-->
-        <!--android:gravity="center"-->
+        <!--android:gravity="setCenter"-->
         <!--/>-->
 
 
@@ -32,7 +32,7 @@
         <!--android:layout_height="100dp">-->
 
         <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_gravity="setCenter"&ndash;&gt;-->
             <!--&lt;!&ndash;android:background="#330000ff"&ndash;&gt;-->
             <!--&lt;!&ndash;android:id="@+id/text_view"&ndash;&gt;-->
             <!--&lt;!&ndash;android:text="dpawjdiwajfiawjfpwafjwaopj"&ndash;&gt;-->
@@ -41,7 +41,7 @@
 
     <!--</LinearLayout>-->
 
-    <!--<com.example.macroz.myapplication.view.MyView-->
+    <!--<com.example.macroz.myapplication.customview.view.MyView-->
         <!--android:id="@+id/myview"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.example.macroz.myapplication.view.MyFoldLayout
+        <com.example.macroz.myapplication.customview.view.MyFoldLayout
             android:id="@+id/fold_layout"
             android:layout_width="200dp"
             android:layout_height="match_parent">
@@ -63,7 +63,7 @@
                 android:scaleType="fitXY"
                 android:layout_height="match_parent" />
 
-        </com.example.macroz.myapplication.view.MyFoldLayout>
+        </com.example.macroz.myapplication.customview.view.MyFoldLayout>
 
 
         <TextView

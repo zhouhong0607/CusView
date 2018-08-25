@@ -37,14 +37,25 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
      */
     private void initData() {
         mList = new ArrayList<>();
-        //Matrix test 界面
-        mList.add(new GuideBean("Matrix 测试",ActivityDefine.MATRIX_TEST_ACTIVITY));
+        //Matrix Api 界面
+        mList.add(new GuideBean("Matrix Api 测试", ActivityDefine.MATRIX_API_TEST_ACTIVITY));
+        //Matrix pre post test 界面
+        mList.add(new GuideBean("Matrix Pre/Post 测试", ActivityDefine.MATRIX_PRE_POST_TEST_ACTIVITY));
         //Camera test 界面
-        mList.add(new GuideBean("Camera 测试",ActivityDefine.CAMERA_TEST_ACTIVITY));
+        mList.add(new GuideBean("Camera 测试", ActivityDefine.CAMERA_TEST_ACTIVITY));
         //小飞机  转圈圈
-        mList.add(new GuideBean("小飞机",ActivityDefine.MATRIX_TEST_ROTATE));
-
-
+        mList.add(new GuideBean("小飞机", ActivityDefine.MATRIX_TEST_ROTATE));
+        //poly to poly
+        mList.add(new GuideBean("Polygon 测试", ActivityDefine.MATRIX_TEST_POLYGON));
+        //折叠布局测试
+        mList.add(new GuideBean("FoldLayout 测试", ActivityDefine.MATRIX_FOLDLAYOUT_TEST));
+        //谷歌 3D旋转 animation 测试
+        mList.add(new GuideBean("Google 3D Rotate测试", ActivityDefine.ROTATE_3D_TEST));
+        //cube  魔方界面
+        mList.add(new GuideBean("Cube 测试", ActivityDefine.MATRIX_TEST_CUBE));
+        /********************news app测试部分*********************/
+        mList.add(new GuideBean("FlexLayoutTest", ActivityDefine.TEST_FLEXLAYOUT));
+        mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
     }
 
     /**
@@ -54,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
      * @param guideBean
      */
     @Override
-    public void onClickGuideView(GuideAdapter.ViewHolder holder,final GuideBean guideBean) {
+    public void onClickGuideView(GuideAdapter.ViewHolder holder, final GuideBean guideBean) {
 
         holder.itemView.postDelayed(new Runnable() {
             @Override
@@ -64,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
                     startActivity(intent);
                 }
             }
-        },150);
+        }, 150);
 
 
     }

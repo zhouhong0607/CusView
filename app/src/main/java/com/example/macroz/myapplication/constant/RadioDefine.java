@@ -12,15 +12,17 @@ public class RadioDefine {
     /**
      * 变换方法
      */
-    public static final int RADIO_GROUP_METHOD_TRANSLATE=0;
-    public static final int RADIO_GROUP_METHOD_ROTATE=1;
-    public static final int RADIO_GROUP_METHOD_SET_LOCATION=2;
+    public static final int RADIO_GROUP_METHOD_TRANSLATE = 0;
+    public static final int RADIO_GROUP_METHOD_ROTATE = 1;
+    public static final int RADIO_GROUP_METHOD_SET_LOCATION = 2;
+    public static final int RADIO_GROUP_METHOD_SCALE = 3;
+    public static final int RADIO_GROUP_METHOD_SKEW = 4;
 
     /**
      * 坐标轴  x,y,z定义
      */
-    public static final int RADIO_GROUP_COORDINATE_X=3;
-    public static final int RADIO_GROUP_COORDINATE_Y=4;
-    public static final int RADIO_GROUP_COORDINATE_Z=5;
+    public static final int RADIO_GROUP_COORDINATE_X = 10;
+    public static final int RADIO_GROUP_COORDINATE_Y = 11;
+    public static final int RADIO_GROUP_COORDINATE_Z = 12;
 
 }
