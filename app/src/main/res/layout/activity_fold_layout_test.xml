@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shouye">
+    android:background="#66000000">
 
     <com.example.macroz.myapplication.customview.view.MyFoldLayout
         android:layout_width="wrap_content"
@@ -12,9 +12,9 @@
         android:layout_centerInParent="true">
 
         <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/fengmian" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/echat3" />
 
     </com.example.macroz.myapplication.customview.view.MyFoldLayout>
 

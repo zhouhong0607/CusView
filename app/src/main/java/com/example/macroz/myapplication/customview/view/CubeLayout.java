@@ -5,6 +5,7 @@ import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +49,7 @@ public class CubeLayout extends ViewGroup {
         for (int i = 0; i < childCount; i++) {
             measureChild(getChildAt(i), childWidthMeasureSpec, childHeightMeasureSpec);
         }
+        Log.i(TAG, "onMeasure():");
     }
 
     @Override
@@ -59,6 +61,7 @@ public class CubeLayout extends ViewGroup {
             View childView = getChildAt(i);
             childView.layout(0, i * perChildHeight, getMeasuredWidth(), (i + 1) * perChildHeight);
         }
+        Log.i(TAG, "onLayout():");
     }
 
     @Override
@@ -115,6 +118,10 @@ public class CubeLayout extends ViewGroup {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (ev.getActionMasked() == MotionEvent.ACTION_MOVE) {
             return true;
+        } else if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            //这里给个 Down事件， 不然Move的时候会 恢复到原点 (找不到move的基点 ，会生成一个 0到scrollY的move事件，出现恢复到未滚动状态后再滚动的情况)
+            onTouchEvent(ev);
+            return false;
         }
         return false;
     }
@@ -125,17 +132,34 @@ public class CubeLayout extends ViewGroup {
     }
 
     GestureDetector.SimpleOnGestureListener mGestureListener = new GestureDetector.SimpleOnGestureListener() {
+
         @Override
         public boolean onDown(MotionEvent e) {
+            Log.e(TAG, "onDown:  ");
+            Log.i(TAG, "Down Event  Y:  " + e.getY());
             return true;
         }
 
+        //e1 是 Down事件 , e2 是当前move事件
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            int maxScrollCount = getChildCount()-1;
+            if (e1 == null) {
+                Log.i(TAG, "e1 ==  null:  " + "Event 2 : " + e2.getActionMasked());
+                Log.i(TAG, " Event2  Y: " + e2.getY());
+                Log.i(TAG, "distance  Y:  " + distanceY);
+            } else {
+                Log.i(TAG, "Event1:  " + e1.getActionMasked() + "Event2: " + e2.getActionMasked());
+                Log.i(TAG, "Event1  Y:  " + e1.getY() + "   Event2  Y: " + e2.getY());
+                Log.i(TAG, "distance  Y:  " + distanceY);
+
+            }
+
+            int maxScrollCount = getChildCount() - 1;
             int height = getHeight();
 
             float scrollY = getScrollY() + distanceY;
+//            Log.i(TAG, "curScrollY:" + getScrollY());
+//            Log.i(TAG, "distanceY:" + distanceY);
             if (scrollY > maxScrollCount * height) {
                 scrollY = maxScrollCount * height;
             }
@@ -145,9 +169,15 @@ public class CubeLayout extends ViewGroup {
             }
 
             CubeLayout.this.scrollTo(0, (int) scrollY);
+//            Log.i(TAG, "scrollY  after:" + CubeLayout.this.getScrollY());
+
             return true;
         }
     };
 
-
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        Log.w(TAG, "onScrollChanged oldY:" + oldt + "   curY:" + t);
+    }
 }

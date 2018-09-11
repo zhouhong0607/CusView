@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
         /********************news app测试部分*********************/
         mList.add(new GuideBean("FlexLayoutTest", ActivityDefine.TEST_FLEXLAYOUT));
         mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
+
+        /************普通test****************/
+        mList.add(new GuideBean("ViewPagerTest", ActivityDefine.TEST_VIEWPAGER));
+
+
     }
 
     /**

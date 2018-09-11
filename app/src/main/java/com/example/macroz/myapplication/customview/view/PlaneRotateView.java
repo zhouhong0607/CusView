@@ -60,7 +60,7 @@ public class PlaneRotateView extends View {
         canvas.translate(getMeasuredWidth() / 2, getMeasuredHeight() / 2);      // 平移坐标系
 
 
-        //第一种方案
+
         Path path = new Path();                                 // 创建 Path
 
         path.addCircle(0, 0, 200, Path.Direction.CW);           // 添加一个圆形
@@ -71,7 +71,7 @@ public class PlaneRotateView extends View {
         if (currentValue >= 1) {
             currentValue = 0;
         }
-
+        //第一种方案
         measure.getPosTan(measure.getLength() * currentValue, pos, tan);        // 获取当前位置的坐标以及趋势
 
         mMatrix.reset();                                                        // 重置Matrix

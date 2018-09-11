@@ -8,6 +8,7 @@ import com.example.macroz.myapplication.customview.activity.MatrixPrePostTestAct
 import com.example.macroz.myapplication.customview.activity.PlaneRotateActivity;
 import com.example.macroz.myapplication.customview.activity.PolyToPolyTestActivity;
 import com.example.macroz.myapplication.customview.activity.Rotate3DTestActivity;
+import com.example.macroz.myapplication.customview.activity.ViewPagerTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.FlexLayoutTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
 
@@ -58,7 +59,16 @@ public class ActivityDefine {
      * FlexLayout测试
      */
     public static final String TEST_FLEXLAYOUT = FlexLayoutTestActivity.class.getName();
+    /**
+     * lottie 测试
+     */
     public static final String TEST_LOTTIE = LottieTestActivity.class.getName();
+
+
+    /**
+     * ViewPager测试
+     */
+    public static final String TEST_VIEWPAGER = ViewPagerTestActivity.class.getName();
 
 
 }

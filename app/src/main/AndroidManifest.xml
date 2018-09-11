@@ -30,7 +30,8 @@
         <activity android:name=".newsapptest.activity.LottieTestActivity" />
         <activity android:name=".customview.activity.PolyToPolyTestActivity" />
         <activity android:name=".customview.activity.FoldLayoutTestActivity" />
-        <activity android:name=".customview.activity.Rotate3DTestActivity"></activity>
+        <activity android:name=".customview.activity.Rotate3DTestActivity" />
+        <activity android:name=".customview.activity.ViewPagerTestActivity"></activity>
     </application>
 
 </manifest>

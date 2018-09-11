@@ -21,15 +21,15 @@ import android.widget.Scroller;
  * 修改时间: 2018/8/19 下午6:52
  * 修改备注:
  */
-public class Custom3DView extends ViewGroup{
-    private final static String TAG="Custom3DView";
+public class Custom3DView extends ViewGroup {
+    private final static String TAG = "Custom3DView";
     private Camera mCamera;
     private Matrix mMatrix;
     private int mStartScreen = 1;//开始时的item位置
     private float mDownY = 0;
     private static final int standerSpeed = 2000;
     private int mCurScreen = 1;//当前item的位置
-    private  int mHeight = 0;//控件的高
+    private int mHeight = 0;//控件的高
     private VelocityTracker mTracker;
     private Scroller mScroller;
     // 旋转的角度，可以进行修改来观察效果
@@ -39,13 +39,14 @@ public class Custom3DView extends ViewGroup{
     private static final int STATE_NEXT = 1;
     private static final int STATE_NORMAL = 2;
     private int STATE = -1;
-    private float resistance = 1f;//滑动阻力
+    private float resistance = 1.6f;//滑动阻力
+
     public Custom3DView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public Custom3DView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public Custom3DView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -57,10 +58,11 @@ public class Custom3DView extends ViewGroup{
         mCamera = new Camera();
         mMatrix = new Matrix();
 
-        if (mScroller == null){
-            mScroller = new Scroller(getContext(),new LinearInterpolator());
+        if (mScroller == null) {
+            mScroller = new Scroller(getContext(), new LinearInterpolator());
         }
     }
+
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
         return new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -81,71 +83,77 @@ public class Custom3DView extends ViewGroup{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
         int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(measureWidth,measureHeight);
+        setMeasuredDimension(measureWidth, measureHeight);
 
         MarginLayoutParams params = (MarginLayoutParams) this.getLayoutParams();
         int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(
-                measureWidth- (params.leftMargin + params.rightMargin), MeasureSpec.EXACTLY);
+                measureWidth - (params.leftMargin + params.rightMargin), MeasureSpec.EXACTLY);
         int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
                 measureHeight - (params.topMargin + params.bottomMargin), MeasureSpec.EXACTLY);
 
-        measureChildren(childWidthMeasureSpec,childHeightMeasureSpec);
+        measureChildren(childWidthMeasureSpec, childHeightMeasureSpec);
 
         mHeight = getMeasuredHeight();
 
-        scrollTo(0,mStartScreen * mHeight);
-        Log.e(TAG,"onMeasure()");
+        scrollTo(0, mStartScreen * mHeight);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         MarginLayoutParams params = (MarginLayoutParams) this.getLayoutParams();
         int childTop = 0;
-        for (int i = 0; i <getChildCount() ; i++) {
+        for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            if (child.getVisibility() != GONE){
-                if (i==0){
-                    childTop+=params.topMargin;
+            if (child.getVisibility() != GONE) {
+                if (i == 0) {
+                    childTop += params.topMargin;
                 }
                 child.layout(params.leftMargin, childTop,
                         child.getMeasuredWidth() + params.leftMargin, childTop + child.getMeasuredHeight());
                 childTop = childTop + child.getMeasuredHeight();
             }
         }
-        Log.e(TAG,"onLayout()");
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        for (int i = 0; i < getChildCount(); i++) {
+            drawScreen(canvas, i, getDrawingTime());
+        }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()){
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 return false;
         }
         return true;
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mTracker == null){
+        if (mTracker == null) {
             mTracker = VelocityTracker.obtain();
         }
         mTracker.addMovement(event);
         float y = event.getY();
-        switch (event.getAction()){
+        switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
 
-                if (!mScroller.isFinished()){
+                if (!mScroller.isFinished()) {
                     mScroller.setFinalY(mScroller.getCurrY());
                     mScroller.abortAnimation();
-                    scrollTo(0,getScrollY());
+                    scrollTo(0, getScrollY());
                 }
                 mDownY = y;
                 break;
-            case  MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE:
 
-                int disY  = (int) (mDownY - y);
+                int disY = (int) (mDownY - y);
                 mDownY = y;
-                if (mScroller.isFinished()){
+                if (mScroller.isFinished()) {
                     recycleMove(disY);
                 }
                 break;
@@ -155,17 +163,17 @@ public class Custom3DView extends ViewGroup{
 
                 float velocitY = mTracker.getYVelocity();
                 //滑动的速度大于规定的速度，或者向上滑动时，上一页页面展现出的高度超过1/2。则设定状态为STATE_PRE
-                if(velocitY > standerSpeed || ((getScrollY() + mHeight / 2) / mHeight < mStartScreen)){
-                    STATE =  STATE_PRE;
-                }else if(velocitY < -standerSpeed  || ((getScrollY() + mHeight / 2) / mHeight > mStartScreen)){
+                if (velocitY > standerSpeed || ((getScrollY() + mHeight / 2) / mHeight < mStartScreen)) {
+                    STATE = STATE_PRE;
+                } else if (velocitY < -standerSpeed || ((getScrollY() + mHeight / 2) / mHeight > mStartScreen)) {
                     //滑动的速度大于规定的速度，或者向下滑动时，下一页页面展现出的高度超过1/2。则设定状态为STATE_NEXT
-                    STATE =  STATE_NEXT;
-                }else{
-                    STATE =  STATE_NORMAL;
+                    STATE = STATE_NEXT;
+                } else {
+                    STATE = STATE_NORMAL;
                 }
                 //根据STATE进行相应的变化
                 changeByState();
-                if (mTracker != null){
+                if (mTracker != null) {
                     mTracker.recycle();
                     mTracker = null;
                 }
@@ -174,6 +182,7 @@ public class Custom3DView extends ViewGroup{
         //返回true,消耗点击事件
         return true;
     }
+
     private void changeByState() {
         switch (STATE) {
             case STATE_NORMAL:
@@ -188,6 +197,7 @@ public class Custom3DView extends ViewGroup{
         }
         invalidate();
     }
+
     /**
      * 当前页
      */
@@ -201,6 +211,7 @@ public class Custom3DView extends ViewGroup{
         duration = (Math.abs(delta)) * 4;
         mScroller.startScroll(0, startY, 0, delta, duration);
     }
+
     /**
      * 上一页
      */
@@ -219,6 +230,7 @@ public class Custom3DView extends ViewGroup{
         duration = (Math.abs(delta)) * 2;
         mScroller.startScroll(0, startY, 0, delta, duration);
     }
+
     /**
      * 下一页
      */
@@ -234,7 +246,8 @@ public class Custom3DView extends ViewGroup{
         duration = (Math.abs(delta)) * 2;
         mScroller.startScroll(0, startY, 0, delta, duration);
     }
-    private void setNext(){
+
+    private void setNext() {
         mCurScreen = (mCurScreen + 1) % getChildCount();
 
         int childCount = getChildCount();
@@ -243,7 +256,7 @@ public class Custom3DView extends ViewGroup{
         addView(view, childCount - 1);
     }
 
-    private void setPre(){
+    private void setPre() {
         mCurScreen = ((mCurScreen - 1) + getChildCount()) % getChildCount();
 
         int childCount = getChildCount();
@@ -251,16 +264,17 @@ public class Custom3DView extends ViewGroup{
         removeViewAt(childCount - 1);
         addView(view, 0);
     }
+
     private void recycleMove(int delta) {
         delta = delta % mHeight;
         delta = (int) (delta / resistance);
         if (Math.abs(delta) > mHeight / 4) {
             return;
         }
-        if (getScrollY() <= 0 && mCurScreen <= 0  && delta<=0){
+        if (getScrollY() <= 0 && mCurScreen <= 0 && delta <= 0) {
             return;
         }
-        if (mHeight*mCurScreen <= getScrollY()  && mCurScreen == getChildCount()-1 && delta>= 0){
+        if (mHeight * mCurScreen <= getScrollY() && mCurScreen == getChildCount() - 1 && delta >= 0) {
             return;
         }
         scrollBy(0, delta);
@@ -274,6 +288,7 @@ public class Custom3DView extends ViewGroup{
         }
 
     }
+
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
@@ -282,17 +297,9 @@ public class Custom3DView extends ViewGroup{
         }
     }
 
-
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        for (int i = 0;i<getChildCount();i++){
-            drawScreen(canvas,i,getDrawingTime());
-        }
-    }
-
     /**
      * 画单个页面
+     *
      * @param canvas
      * @param screen
      * @param drawingTime
@@ -302,8 +309,6 @@ public class Custom3DView extends ViewGroup{
         final int height = getHeight();
         final int scrollHeight = screen * height;
         final int scrollY = this.getScrollY();
-
-        Log.e(TAG,"scrollY: " + scrollY);
         // 偏移量不足的时
         if (scrollHeight > scrollY + height || scrollHeight + height < scrollY) {
             return;
@@ -312,23 +317,12 @@ public class Custom3DView extends ViewGroup{
         final int faceIndex = screen;
         final float currentDegree = getScrollY() * (angle / getMeasuredHeight());
         final float faceDegree = currentDegree - faceIndex * angle;
-
-        Log.e(TAG,"curIndex: " + faceIndex);
-        Log.e(TAG,"currentDegree: " + currentDegree);
-        Log.e(TAG,"faceDegree: " + faceDegree);
-
-
-
         if (faceDegree > 90 || faceDegree < -90) {
             return;
         }
         final float centerY = (scrollHeight < scrollY) ? scrollHeight + height
                 : scrollHeight;
         final float centerX = getWidth() / 2;
-
-        Log.e(TAG,"centerX: " + centerX);
-        Log.e(TAG,"centerY: " + centerY);
-
         final Camera camera = mCamera;
         final Matrix matrix = mMatrix;
         canvas.save();
@@ -339,7 +333,6 @@ public class Custom3DView extends ViewGroup{
 
         matrix.preTranslate(-centerX, -centerY);
         matrix.postTranslate(centerX, centerY);
-        Log.e(TAG,"Matrix : " + matrix.toShortString());
         canvas.concat(matrix);
         drawChild(canvas, child, drawingTime);
         canvas.restore();
