@@ -49,10 +49,7 @@ public abstract class MyFragmentStatePagerAdapter extends MyPagerAdapter{
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        // If we already have this item instantiated, there is nothing
-        // to do.  This can happen when we are restoring the entire pager
-        // from its saved state, where the fragment manager has already
-        // taken care of restoring the fragments we previously had instantiated.
+       //首先查看是否有缓存
         if (mFragments.size() > position) {
             Fragment f = mFragments.get(position);
             if (f != null) {
@@ -66,9 +63,11 @@ public abstract class MyFragmentStatePagerAdapter extends MyPagerAdapter{
 
         Fragment fragment = getItem(position);
         if (DEBUG) Log.v(TAG, "Adding item #" + position + ": f=" + fragment);
+        //恢复对应位置的state
         if (mSavedState.size() > position) {
             Fragment.SavedState fss = mSavedState.get(position);
             if (fss != null) {
+                //查看当前位置是否有缓存的状态，如果有恢复状态
                 fragment.setInitialSavedState(fss);
             }
         }
@@ -95,8 +94,10 @@ public abstract class MyFragmentStatePagerAdapter extends MyPagerAdapter{
         while (mSavedState.size() <= position) {
             mSavedState.add(null);
         }
+        //保存状态
         mSavedState.set(position, fragment.isAdded()
                 ? mFragmentManager.saveFragmentInstanceState(fragment) : null);
+        //清空对应的缓存位置
         mFragments.set(position, null);
 
         mCurTransaction.remove(fragment);
@@ -106,6 +107,7 @@ public abstract class MyFragmentStatePagerAdapter extends MyPagerAdapter{
     @SuppressWarnings("ReferenceEquality")
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         Fragment fragment = (Fragment)object;
+        //如果设置的不是当前保存的curItem ,替换curItem为新的fragment
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
                 mCurrentPrimaryItem.setMenuVisibility(false);

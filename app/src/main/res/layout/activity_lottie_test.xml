@@ -14,8 +14,10 @@
          />
 
 
-    <!--app:lottie_autoPlay="true"-->
-    <!--app:lottie_fileName="push_test_animator.json"-->
-    <!--app:lottie_loop="true"-->
-
+    <Button
+        android:id="@+id/lottie_button_add_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>

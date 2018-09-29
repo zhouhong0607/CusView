@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".newsapptest.activity.HorizontalPullTest">
+
+
+  <ViewStub
+      android:id="@+id/pull_view_stub"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+
+  <TextView
+      android:id="@+id/cur_lottie_name_text"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginBottom="108dp"
+      android:gravity="center"
+      android:text="TextView"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <EditText
+      android:id="@+id/lottie_file_edit"
+      android:layout_width="0dp"
+      android:layout_height="40dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginBottom="58dp"
+      android:hint="fineName"
+      android:lines="2"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/update_lottie_name_button"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/update_lottie_name_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="58dp"
+      android:text="update"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+
+  <Button
+      android:id="@+id/load_lottie_button"
+      android:layout_width="120dp"
+      android:layout_height="40dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginBottom="8dp"
+      android:text="load lottie file"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/delete_lottie_button"
+      android:layout_width="120dp"
+      android:layout_height="40dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="8dp"
+      android:text="delete lottie file"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>
