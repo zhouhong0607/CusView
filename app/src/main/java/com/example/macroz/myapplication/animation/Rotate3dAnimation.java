@@ -1,5 +1,7 @@
 package com.example.macroz.myapplication.animation;
 
+import android.app.Application;
+import android.content.Context;
 import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.util.Log;
@@ -15,7 +17,7 @@ public class Rotate3dAnimation extends Animation {
     private final float mDepthZ;
     private final boolean mReverse;
     private Camera mCamera;
-
+    private float scale ;
     /**
      * 创建一个绕y轴旋转的3D动画效果，旋转过程中具有深度调节，可以指定旋转中心。
      *
@@ -26,7 +28,7 @@ public class Rotate3dAnimation extends Animation {
      * @param depthZ      最远到达的z轴坐标
      * @param reverse     true 表示由从0到depthZ，false相反
      */
-    public Rotate3dAnimation(float fromDegrees, float toDegrees,
+    public Rotate3dAnimation(Context context,float fromDegrees, float toDegrees,
                              float centerX, float centerY, float depthZ, boolean reverse) {
         mFromDegrees = fromDegrees;
         mToDegrees = toDegrees;
@@ -34,6 +36,7 @@ public class Rotate3dAnimation extends Animation {
         mCenterY = centerY;
         mDepthZ = depthZ;
         mReverse = reverse;
+        scale= context.getResources().getDisplayMetrics().density;
     }
 
     @Override
@@ -65,12 +68,18 @@ public class Rotate3dAnimation extends Animation {
 
         // 绕y轴旋转
         camera.rotateY(degrees);
-
         camera.getMatrix(matrix);
         camera.restore();
 //
 //
 //        centerX+=centerX/2;
+
+        // 修正失真，主要修改 MPERSP_0 和 MPERSP_1
+        float[] mValues = new float[9];
+        matrix.getValues(mValues);			    //获取数值
+        mValues[6] = mValues[6]/scale;			//数值修正
+        mValues[7] = mValues[7]/scale;			//数值修正
+        matrix.setValues(mValues);			    //重新赋值
 
         matrix.preTranslate(-centerX, -centerY);
         matrix.postTranslate(centerX, centerY);

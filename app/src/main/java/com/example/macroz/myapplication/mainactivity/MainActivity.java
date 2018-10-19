@@ -82,15 +82,12 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
         mList.add(new GuideBean("Cube 测试", ActivityDefine.MATRIX_TEST_CUBE));
         mList.add(new GuideBean("Cube ViewPager 测试", ActivityDefine.TEST_VIEWPAGER));
         /********************news app测试部分*********************/
-        mList.add(new GuideBean("FlexLayoutTest", ActivityDefine.TEST_FLEXLAYOUT));
-        mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
-
-        /************普通test****************/
-        mList.add(new GuideBean("ConstraintLayout Test", ActivityDefine.TEST_CONSTRAINT));
-        //测试横滑控制lottie动效
-        mList.add(new GuideBean("NewsScroll Test", ActivityDefine.TEST_NEWS_SCROLL_DYNAMIC));
         //水平拖拽布局测试
         mList.add(new GuideBean("HorizontalPull Test", ActivityDefine.TEST_NEWS_HORIZONTAL_PULL));
+        mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
+        mList.add(new GuideBean("FlexLayoutTest", ActivityDefine.TEST_FLEXLAYOUT));
+        /************普通test****************/
+
 
 
     }

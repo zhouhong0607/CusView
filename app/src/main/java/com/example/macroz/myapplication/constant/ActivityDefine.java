@@ -1,7 +1,5 @@
 package com.example.macroz.myapplication.constant;
 
-import android.support.constraint.ConstraintLayout;
-
 import com.example.macroz.myapplication.customview.activity.CameraTestActivity;
 import com.example.macroz.myapplication.customview.activity.CubeActivity;
 import com.example.macroz.myapplication.customview.activity.FoldLayoutTestActivity;
@@ -11,11 +9,9 @@ import com.example.macroz.myapplication.customview.activity.PlaneRotateActivity;
 import com.example.macroz.myapplication.customview.activity.PolyToPolyTestActivity;
 import com.example.macroz.myapplication.customview.activity.Rotate3DTestActivity;
 import com.example.macroz.myapplication.customview.activity.ViewPagerTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.ConstraintLayoutActivity;
 import com.example.macroz.myapplication.newsapptest.activity.FlexLayoutTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.HorizontalPullTest;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.NewsScrollTestActivity;
 
 /**
  * 类描述:
@@ -76,13 +72,8 @@ public class ActivityDefine {
     public static final String TEST_VIEWPAGER = ViewPagerTestActivity.class.getName();
 
     /**
-     * 测试 ConstraintLayout
+     * 左拉右拉布局测试
      */
-    public static final String TEST_CONSTRAINT = ConstraintLayoutActivity.class.getName();
-    /**
-     * 测试横滑控制Lottie动效
-     */
-    public static final String TEST_NEWS_SCROLL_DYNAMIC = NewsScrollTestActivity.class.getName();
     public static final String TEST_NEWS_HORIZONTAL_PULL = HorizontalPullTest.class.getName();
 
 

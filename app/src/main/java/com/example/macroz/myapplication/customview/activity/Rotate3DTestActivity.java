@@ -19,7 +19,7 @@ public class Rotate3DTestActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Rotate3dAnimation animation = new Rotate3dAnimation(0, 180, v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2, 1, false);
+                Rotate3dAnimation animation = new Rotate3dAnimation(Rotate3DTestActivity.this, 0, 180, v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2, 1, false);
                 animation.setDuration(4000);
                 animation.setFillAfter(true);
                 animation.setInterpolator(new LinearInterpolator());

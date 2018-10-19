@@ -48,8 +48,7 @@ public class HorizontalPullTest extends AppCompatActivity {
         ViewStub viewStub = findViewById(R.id.pull_view_stub);
         viewStub.setLayoutResource(R.layout.abs_horizontal_pull_layout);
         mHorizontalPullLayout = (HorizontalPullLayout) viewStub.inflate();
-
-        mHorizontalPullLayout.setMaxDragDistance(1000);
+        mHorizontalPullLayout.setMaxDragDistance(500);
         mHorizontalPullLayout.setDragLimit(240);
         mHorizontalPullLayout.setDragThreshold(0.978f);
         //recyclerView部分
@@ -69,12 +68,13 @@ public class HorizontalPullTest extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+                TextView tv = holder.itemView.findViewById(R.id.textView);
+                tv.setText("item :" + (position + 1));
             }
 
             @Override
             public int getItemCount() {
-                return 10;
+                return 20;
             }
         });
 
@@ -143,8 +143,8 @@ public class HorizontalPullTest extends AppCompatActivity {
             }
         });
 
-        List<String> s=new ArrayList<>();
-        
+        List<String> s = new ArrayList<>();
+
     }
 
     //
