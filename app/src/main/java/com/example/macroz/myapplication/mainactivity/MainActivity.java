@@ -1,4 +1,4 @@
-package com.example.macroz.myapplication.activity;
+package com.example.macroz.myapplication.mainactivity;
 
 import android.Manifest;
 import android.content.Intent;

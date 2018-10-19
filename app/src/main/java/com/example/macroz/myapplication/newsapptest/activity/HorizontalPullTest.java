@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.newsapptest.view.HorizontalPullLayout;
 
@@ -24,6 +26,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HorizontalPullTest extends AppCompatActivity {
 
@@ -34,7 +38,7 @@ public class HorizontalPullTest extends AppCompatActivity {
 
     String fileName = "news_reader_viewmore.json";
     String wsDir = Environment.getExternalStorageDirectory().getPath() + "/Tencent/MicroMsg/Download/";
-    String rootDir=Environment.getExternalStorageDirectory().getPath()+"/";
+    String rootDir = Environment.getExternalStorageDirectory().getPath() + "/";
     String lottiePath = wsDir + fileName;
 
     @Override
@@ -109,7 +113,7 @@ public class HorizontalPullTest extends AppCompatActivity {
 //        lottieAnimationView.setProgress(0.5f);
 
 
-        final   TextView fileNameText = findViewById(R.id.cur_lottie_name_text);
+        final TextView fileNameText = findViewById(R.id.cur_lottie_name_text);
         fileNameText.setText(fileName);
 
         final EditText editText = findViewById(R.id.lottie_file_edit);
@@ -139,8 +143,8 @@ public class HorizontalPullTest extends AppCompatActivity {
             }
         });
 
-
-        ThreadLocal threadLocal=new ThreadLocal();
+        List<String> s=new ArrayList<>();
+        
     }
 
     //

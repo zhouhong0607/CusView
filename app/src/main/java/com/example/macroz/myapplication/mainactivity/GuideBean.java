@@ -1,4 +1,4 @@
-package com.example.macroz.myapplication.activity;
+package com.example.macroz.myapplication.mainactivity;
 
 /**
  * 类描述:   主页面导航  item 对应的 Bean

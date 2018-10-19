@@ -2,12 +2,10 @@
 
 <com.example.macroz.myapplication.newsapptest.view.HorizontalPullLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/news_horizontal_pull_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/news_horizontal_lottie_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:lottie_fileName="news_reader_viewmore.json" />

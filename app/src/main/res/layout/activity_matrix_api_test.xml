@@ -14,7 +14,6 @@
         android:layout_centerInParent="true" />
 
     <LinearLayout
-        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -58,13 +57,11 @@
 
         <!--x,y,value-->
         <LinearLayout
-            android:id="@+id/input_type_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <!--X 输入-->
             <TextView
-                android:id="@+id/input_textview_x"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:text="X:" />
@@ -77,7 +74,6 @@
 
             <!--Y 输入-->
             <TextView
-                android:id="@+id/input_textview_y"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:text="Y:" />
@@ -90,7 +86,6 @@
 
             <!--Degree 输入-->
             <TextView
-                android:id="@+id/input_textview_degree"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:text="D:" />
