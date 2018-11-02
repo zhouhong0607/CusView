@@ -5,7 +5,7 @@ android {
     buildToolsVersion android.buildToolsVersion
     defaultConfig {
         applicationId "com.example.macroz.myapplication"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"

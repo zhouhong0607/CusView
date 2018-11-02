@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
     /**
      * 请求读写的权限
      */
-    private void tryToRequestPermission(){
+    private void tryToRequestPermission() {
         int STORAGE_REQUEST_CODE = 1;
         String[] PERMISSIONS_STORAGE = {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
-        for(String permission:PERMISSIONS_STORAGE){
+        for (String permission : PERMISSIONS_STORAGE) {
             int granted = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (granted != PackageManager.PERMISSION_GRANTED) {
                 // We don't have permission so prompt the user
@@ -86,8 +86,9 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
         mList.add(new GuideBean("HorizontalPull Test", ActivityDefine.TEST_NEWS_HORIZONTAL_PULL));
         mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
         mList.add(new GuideBean("FlexLayoutTest", ActivityDefine.TEST_FLEXLAYOUT));
+        //旋转广告测试
+        mList.add(new GuideBean("旋转广告", ActivityDefine.TEST_NEWS_ROTATE_AD));
         /************普通test****************/
-
 
 
     }

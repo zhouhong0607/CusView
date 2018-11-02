@@ -12,6 +12,7 @@ import com.example.macroz.myapplication.customview.activity.ViewPagerTestActivit
 import com.example.macroz.myapplication.newsapptest.activity.FlexLayoutTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.HorizontalPullTest;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
+import com.example.macroz.myapplication.newsapptest.activity.RotateAdTest;
 
 /**
  * 类描述:
@@ -75,6 +76,10 @@ public class ActivityDefine {
      * 左拉右拉布局测试
      */
     public static final String TEST_NEWS_HORIZONTAL_PULL = HorizontalPullTest.class.getName();
+    /**
+     * 旋转广告test
+     */
+    public static final String TEST_NEWS_ROTATE_AD = RotateAdTest.class.getName();
 
 
 }

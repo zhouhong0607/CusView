@@ -3,10 +3,8 @@
     package="com.example.macroz.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -34,7 +32,8 @@
         <activity android:name=".customview.activity.FoldLayoutTestActivity" />
         <activity android:name=".customview.activity.Rotate3DTestActivity" />
         <activity android:name=".customview.activity.ViewPagerTestActivity" />
-        <activity android:name=".newsapptest.activity.HorizontalPullTest"></activity>
+        <activity android:name=".newsapptest.activity.HorizontalPullTest" />
+        <activity android:name=".newsapptest.activity.RotateAdTest"></activity>
     </application>
 
 </manifest>
