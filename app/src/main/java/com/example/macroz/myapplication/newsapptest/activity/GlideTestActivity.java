@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FlexLayoutTestActivity extends AppCompatActivity {
+public class GlideTestActivity extends AppCompatActivity {
 
     private LabelSelectLayout mLabelSelectLayout;
     private List<LabelBean> mBeanList;
@@ -34,7 +34,7 @@ public class FlexLayoutTestActivity extends AppCompatActivity {
         mLabelSelectLayout.setOnSelectItemListener(new LabelSelectLayout.OnSelectItemListener() {
             @Override
             public void onSelectItem(LabelBean labelBean) {
-                Toast.makeText(FlexLayoutTestActivity.this, labelBean.getLabel(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GlideTestActivity.this, labelBean.getLabel(), Toast.LENGTH_SHORT).show();
             }
         });
 

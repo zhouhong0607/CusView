@@ -25,15 +25,16 @@
         <activity android:name=".customview.activity.MatrixPrePostTestActivity" />
         <activity android:name=".customview.activity.PlaneRotateActivity" />
         <activity android:name=".customview.activity.CubeActivity" />
-        <activity android:name=".newsapptest.activity.FlexLayoutTestActivity" />
+        <activity android:name=".newsapptest.activity.GlideTestActivity" />
         <activity android:name=".customview.activity.MatrixApiTestActivity" />
         <activity android:name=".newsapptest.activity.LottieTestActivity" />
         <activity android:name=".customview.activity.PolyToPolyTestActivity" />
         <activity android:name=".customview.activity.FoldLayoutTestActivity" />
         <activity android:name=".customview.activity.Rotate3DTestActivity" />
         <activity android:name=".customview.activity.ViewPagerTestActivity" />
-        <activity android:name=".newsapptest.activity.HorizontalPullTest" />
-        <activity android:name=".newsapptest.activity.RotateAdTest"></activity>
+        <activity android:name=".customview.activity.ColorMatrixTestActivity" />
+        <activity android:name=".newsapptest.activity.HorizontalRecyclerTest" />
+        <activity android:name=".newsapptest.activity.VerticalRecyclerTest"></activity>
     </application>
 
 </manifest>

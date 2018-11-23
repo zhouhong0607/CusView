@@ -58,7 +58,6 @@ public class RotateAdView extends AppCompatImageView {
         mMatrix = new Matrix();
         mPaint = new Paint();
         mDrawPlan = DRAW_PLAN_A;
-        //todo zh 设置默认图
     }
 
 
@@ -96,7 +95,6 @@ public class RotateAdView extends AppCompatImageView {
         if (aBitmap == null && defaultBitmap != null) {
             //画默认图
 //            canvas.drawBitmap(defaultBitmap, 0, 0, mPaint);
-            //todo zh 确定下画默认图是不是不需要设置图片
             curDrawBitmap = defaultBitmap;
             setImageBitmap(defaultBitmap);
             super.onDraw(canvas);

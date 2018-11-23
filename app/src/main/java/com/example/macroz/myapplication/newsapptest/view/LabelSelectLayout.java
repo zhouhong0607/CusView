@@ -26,7 +26,7 @@ import java.util.Map;
  * 创建时间: 2018/8/22 上午11:07
  * 修改人:   macroz
  * 修改时间: 2018/8/22 上午11:07
- * 修改备注:  todo zh 主题刷新
+ * 修改备注:
  */
 public class LabelSelectLayout extends FlexboxLayout implements View.OnClickListener {
     private final String TAG = "LabelSelectLayout";
@@ -140,12 +140,9 @@ public class LabelSelectLayout extends FlexboxLayout implements View.OnClickList
             TextView textView = new TextView(getContext());
             //设置标签内容
             textView.setText(bean.getLabel());
-            //todo zh textSize调整
             textView.setTextSize(20);
             textView.setGravity(Gravity.CENTER);
-            //todo zh padding调整
             textView.setPadding(20, 10, 20, 10);
-            //todo zh 设置margin值
             MarginLayoutParams lp = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
                     , ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.leftMargin = 20;

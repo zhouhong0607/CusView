@@ -33,7 +33,7 @@ import java.util.List;
  * 修改时间: 2018/9/28 下午2:12
  * 修改备注:
  */
-public class HorizontalPullLayout extends ViewGroup implements NestedScrollingParent {
+public class HorizontalPullLayout extends ViewGroup {
 
     private final String TAG = HorizontalPullLayout.class.getSimpleName();
 
@@ -93,19 +93,6 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
     private void initPullLayout() {
         mLastActionPoint = new PointF();
         mReturnAnimator = new ValueAnimator();
-        mScroller = new OverScroller(getContext());
-        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-            }
-        });
-        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                return false;
-            }
-        });
     }
 
     /**
@@ -212,48 +199,48 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
         Log.i(TAG, "布局 mLeftExtraView: " + (-mLeftExtraView.getMeasuredWidth()) + " , 0  , 0 " + mLeftExtraView.getMeasuredHeight());
     }
 
-//    /**
-//     * 更新子View的位置
-//     *
-//     * @param scrollX x方向移动量
-//     */
-//    private void updateChildrenScrollX(float scrollX) {
-//
-//        if (!mLeftDragEnable && scrollX > 0) {
-//            scrollX = 0;
-//        }
-//        if (!mRightDragEnable && scrollX < 0) {
-//            scrollX = 0;
-//        }
-//
-//
-//        //左拉状态 transX不能 > 0 ,右拉状态 transX不能 <0
-//        if (mState == STATE_PULL_LEFT) {
-//            scrollX = scrollX > 0 ? scrollX : 0;
-//            scrollX = scrollX < mMaxDragDistance ? scrollX : mMaxDragDistance;
-//        } else if (mState == STATE_PULL_RIGHT) {
-//            scrollX = scrollX < 0 ? scrollX : 0;
-//            scrollX = scrollX > -mMaxDragDistance ? scrollX : -mMaxDragDistance;
-//        }
-//
-//        // 添加阻尼效果
-//        float dampingRatio;
-//        if (mMaxDragDistance == 0) {
-//            dampingRatio = 1;
-//        } else {
-//            dampingRatio = Math.abs(getScrollX()) / mMaxDragDistance;
-//        }
-//        scrollX = getScrollX() + (scrollX - getScrollX()) * (1 - dampingRatio);
-//
-////        Log.e(TAG, "dampingRatio:  " + dampingRatio);
-////        Log.e(TAG, "scrollX:  " + scrollX);
-//
-//        scrollTo((int) scrollX, 0);
-//        //通知监听
-//        notifyOnDragProgressUpdate(getProgress(), mState);
-//
-//        Log.d(TAG, "updateChildrenScrollX:  " + scrollX);
-//    }
+    /**
+     * 更新子View的位置
+     *
+     * @param scrollX x方向移动量
+     */
+    private void updateChildrenScrollX(float scrollX) {
+
+        if (!mLeftDragEnable && scrollX > 0) {
+            scrollX = 0;
+        }
+        if (!mRightDragEnable && scrollX < 0) {
+            scrollX = 0;
+        }
+
+
+        //左拉状态 transX不能 > 0 ,右拉状态 transX不能 <0
+        if (mState == STATE_PULL_LEFT) {
+            scrollX = scrollX > 0 ? scrollX : 0;
+            scrollX = scrollX < mMaxDragDistance ? scrollX : mMaxDragDistance;
+        } else if (mState == STATE_PULL_RIGHT) {
+            scrollX = scrollX < 0 ? scrollX : 0;
+            scrollX = scrollX > -mMaxDragDistance ? scrollX : -mMaxDragDistance;
+        }
+
+        // 添加阻尼效果
+        float dampingRatio;
+        if (mMaxDragDistance == 0) {
+            dampingRatio = 1;
+        } else {
+            dampingRatio = Math.abs(getScrollX()) / mMaxDragDistance;
+        }
+        scrollX = getScrollX() + (scrollX - getScrollX()) * (1 - dampingRatio);
+
+//        Log.e(TAG, "dampingRatio:  " + dampingRatio);
+//        Log.e(TAG, "scrollX:  " + scrollX);
+
+        scrollTo((int) scrollX, 0);
+        //通知监听
+        notifyOnDragProgressUpdate(getProgress(), mState);
+
+        Log.d(TAG, "updateChildrenScrollX:  " + scrollX);
+    }
 
 
     @Override
@@ -267,26 +254,25 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
         }
 
 
-//        //左拉状态 transX不能 > 0 ,右拉状态 transX不能 <0
-//        if (mState == STATE_PULL_LEFT) {
-//            x = x > 0 ? x : 0;
-//            x = x < (int) mMaxDragDistance ? x : (int) mMaxDragDistance;
-//        } else if (mState == STATE_PULL_RIGHT) {
-//            x = x < 0 ? x : 0;
-//            x = x > -(int) mMaxDragDistance ? x : -(int) mMaxDragDistance;
-//        }
+        //左拉状态 transX不能 > 0 ,右拉状态 transX不能 <0
+        if (mState == STATE_PULL_LEFT) {
+            x = x > 0 ? x : 0;
+            x = x < (int) mMaxDragDistance ? x : (int) mMaxDragDistance;
+        } else if (mState == STATE_PULL_RIGHT) {
+            x = x < 0 ? x : 0;
+            x = x > -(int) mMaxDragDistance ? x : -(int) mMaxDragDistance;
+        }
 
-        // 添加阻尼效果
-//        float dampingRatio;
-//        if (mMaxDragDistance == 0) {
-//            dampingRatio = 1;
-//        } else {
-//            dampingRatio = Math.abs(getScrollX()) / mMaxDragDistance;
-//        }
-//        x = (int) (getScrollX() + (x - getScrollX()) * (1 - dampingRatio));
+//         添加阻尼效果
+        float dampingRatio;
+        if (mMaxDragDistance == 0) {
+            dampingRatio = 1;
+        } else {
+            dampingRatio = Math.abs(getScrollX()) / mMaxDragDistance;
+        }
+        x = (int) (getScrollX() + (x - getScrollX()) * (1 - dampingRatio));
 
-//        Log.e(TAG, "dampingRatio:  " + dampingRatio);
-//        Log.e(TAG, "scrollX:  " + scrollX);
+        Log.e(TAG, "dampingRatio:  " + dampingRatio);
 
         super.scrollTo(x, getScrollY());
         //通知监听
@@ -304,25 +290,24 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-//        switch (ev.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                Log.e(TAG, "dispatchTouchEvent action : ACTION_DOWN");
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                Log.e(TAG, "dispatchTouchEvent action : ACTION_MOVE");
-//                break;
-//            case MotionEvent.ACTION_CANCEL:
-//                Log.e(TAG, "dispatchTouchEvent action : ACTION_CANCEL");
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                Log.e(TAG, "dispatchTouchEvent action : ACTION_UP");
-//                break;
-//
-//        }
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.e(TAG, "dispatchTouchEvent action : ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.e(TAG, "dispatchTouchEvent action : ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.e(TAG, "dispatchTouchEvent action : ACTION_CANCEL");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.e(TAG, "dispatchTouchEvent action : ACTION_UP");
+                break;
+
+        }
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mScroller.abortAnimation();
                 Log.w(TAG, "mScroller.abortAnimation() 终止动画");
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -333,133 +318,133 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
         }
         mLastActionPoint.set(ev.getX(), ev.getY());
 
-//        // 如果需要滚到头连续拉出效果打开注释
-//        //防止子View不允许父 拦截事件，这里手动调一下拦截判断，给子View一个cancel
-//        if (!mCenterView.canScrollHorizontally(1) || !mCenterView.canScrollHorizontally(-1)) {
-//            if (onInterceptTouchEvent(ev)) {
-//                final long now = SystemClock.uptimeMillis();
-//                MotionEvent event = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0f, 0f, 0);
-//                event.setSource(InputDevice.SOURCE_TOUCHSCREEN);
-//                mCenterView.dispatchTouchEvent(event);
-//                event.recycle();
-//                return onTouchEvent(ev);
-//            }
-//        }
+        // 如果需要滚到头连续拉出效果打开注释
+        //防止子View不允许父 拦截事件，这里手动调一下拦截判断，给子View一个cancel
+        if (!mCenterView.canScrollHorizontally(1) || !mCenterView.canScrollHorizontally(-1)) {
+            if (onInterceptTouchEvent(ev)) {
+                final long now = SystemClock.uptimeMillis();
+                MotionEvent event = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0f, 0f, 0);
+                event.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+                mCenterView.dispatchTouchEvent(event);
+                event.recycle();
+                return onTouchEvent(ev);
+            }
+        }
 
         return super.dispatchTouchEvent(ev);
     }
-//
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent ev) {
-//
-////        switch (ev.getAction()) {
-////            case MotionEvent.ACTION_DOWN:
-////                Log.e(TAG, "onInterceptTouchEvent action : ACTION_DOWN");
-////                break;
-////            case MotionEvent.ACTION_MOVE:
-////                Log.e(TAG, "onInterceptTouchEvent action : ACTION_MOVE");
-////                break;
-////            case MotionEvent.ACTION_CANCEL:
-////                Log.e(TAG, "onInterceptTouchEvent action : ACTION_CANCEL");
-////                break;
-////            case MotionEvent.ACTION_UP:
-////                Log.e(TAG, "onInterceptTouchEvent action : ACTION_UP");
-////                break;
-////        }
-//
-//
-//        if (!mLeftDragEnable && !mRightDragEnable) {
-//            return super.onInterceptTouchEvent(ev);
-//        }
-//
-//        //非0 位置 拦截所有事件
-//        if (getScrollX() != 0) {
-//            return true;
-//        }
-//
-//        //0 位置时 , 仅拦截 向左拉出  向右拉出动作
-//        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-//            //左拉( 1  检查向左滚动)
-//            if (!mCenterView.canScrollHorizontally(1) && xScrollDiff > 0 && mLeftDragEnable) {
-//                setState(STATE_PULL_LEFT);
-//                return true;
-//            }
-//            //右拉( -1 检查 向右滚动)
-//            if (!mCenterView.canScrollHorizontally(-1) && xScrollDiff < 0 && mRightDragEnable) {
-//                setState(STATE_PULL_RIGHT);
-//                return true;
-//            }
-//        }
-//        return super.onInterceptTouchEvent(ev);
-//    }
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//
-////        switch (event.getAction()) {
-////            case MotionEvent.ACTION_DOWN:
-////                Log.e(TAG, "onTouchEvent action : ACTION_DOWN");
-////                break;
-////            case MotionEvent.ACTION_MOVE:
-////                Log.e(TAG, "onTouchEvent action : ACTION_MOVE");
-////                break;
-////            case MotionEvent.ACTION_CANCEL:
-////                Log.e(TAG, "onTouchEvent action : ACTION_CANCEL");
-////                break;
-////            case MotionEvent.ACTION_UP:
-////                Log.e(TAG, "onTouchEvent action : ACTION_UP");
-////                break;
-////        }
-//
-//        //防止不经过 拦截的move事件传过来
-//        if (mState == STATE_NORMAL) {
-//            return false;
-//        }
-//
-//
-//        switch (event.getAction()) {
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+
+//        switch (ev.getAction()) {
 //            case MotionEvent.ACTION_DOWN:
-//                mReturnAnimator.cancel();
+//                Log.e(TAG, "onInterceptTouchEvent action : ACTION_DOWN");
 //                break;
 //            case MotionEvent.ACTION_MOVE:
-//                //设置子View的位置
-//                scrollTo((int) (getScrollX() + xScrollDiff), 0);
+//                Log.e(TAG, "onInterceptTouchEvent action : ACTION_MOVE");
 //                break;
 //            case MotionEvent.ACTION_CANCEL:
+//                Log.e(TAG, "onInterceptTouchEvent action : ACTION_CANCEL");
+//                break;
 //            case MotionEvent.ACTION_UP:
-//                doRelease();
+//                Log.e(TAG, "onInterceptTouchEvent action : ACTION_UP");
 //                break;
 //        }
-//        return true;
-//    }
 
-//    //恢复到起始的位置
-//    private void doRelease() {
-//        if (getProgress() >= mDragThreshold) {
-//            notifyOnDragOver();
+
+        if (!mLeftDragEnable && !mRightDragEnable) {
+            return super.onInterceptTouchEvent(ev);
+        }
+
+        //非0 位置 拦截所有事件
+        if (getScrollX() != 0) {
+            return true;
+        }
+
+        //0 位置时 , 仅拦截 向左拉出  向右拉出动作
+        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+            //左拉( 1  检查向左滚动)
+            if (!mCenterView.canScrollHorizontally(1) && xScrollDiff > 0 && mLeftDragEnable) {
+                setState(STATE_PULL_LEFT);
+                return true;
+            }
+            //右拉( -1 检查 向右滚动)
+            if (!mCenterView.canScrollHorizontally(-1) && xScrollDiff < 0 && mRightDragEnable) {
+                setState(STATE_PULL_RIGHT);
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                Log.e(TAG, "onTouchEvent action : ACTION_DOWN");
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                Log.e(TAG, "onTouchEvent action : ACTION_MOVE");
+//                break;
+//            case MotionEvent.ACTION_CANCEL:
+//                Log.e(TAG, "onTouchEvent action : ACTION_CANCEL");
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                Log.e(TAG, "onTouchEvent action : ACTION_UP");
+//                break;
 //        }
-//
-//        mReturnAnimator.setIntValues(getScrollX(), 0);
-//        mReturnAnimator.setDuration(ANIMATOR_DURATION);
-//        mReturnAnimator.setInterpolator(new LinearInterpolator());
-//        mReturnAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator animation) {
-//                scrollTo((int) animation.getAnimatedValue(), 0);
-//            }
-//        });
-//        mReturnAnimator.addListener(new SimpleAnimatorListener() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                //判断下trans 防止 cancel的时候回调设置状态normal
-//                if (getScrollX() == 0) {
-//                    setState(STATE_NORMAL);
-//                }
-//            }
-//
-//        });
-//        mReturnAnimator.start();
-//    }
+
+        //防止不经过 拦截的move事件传过来
+        if (mState == STATE_NORMAL) {
+            return false;
+        }
+
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mReturnAnimator.cancel();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //设置子View的位置
+                scrollTo((int) (getScrollX() + xScrollDiff), 0);
+                break;
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                doRelease();
+                break;
+        }
+        return true;
+    }
+
+    //恢复到起始的位置
+    private void doRelease() {
+        if (getProgress() >= mDragThreshold) {
+            notifyOnDragOver();
+        }
+
+        mReturnAnimator.setIntValues(getScrollX(), 0);
+        mReturnAnimator.setDuration(ANIMATOR_DURATION);
+        mReturnAnimator.setInterpolator(new LinearInterpolator());
+        mReturnAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                scrollTo((int) animation.getAnimatedValue(), 0);
+            }
+        });
+        mReturnAnimator.addListener(new SimpleAnimatorListener() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                //判断下trans 防止 cancel的时候回调设置状态normal
+                if (getScrollX() == 0) {
+                    setState(STATE_NORMAL);
+                }
+            }
+
+        });
+        mReturnAnimator.start();
+    }
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
@@ -495,17 +480,17 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
         }
         mState = state;
 
-//        switch (state) {
-//            case STATE_NORMAL:
-//                Log.w(TAG, "STATE_NORMAL");
-//                break;
-//            case STATE_PULL_LEFT:
-//                Log.w(TAG, "STATE_PULL_LEFT");
-//                break;
-//            case STATE_PULL_RIGHT:
-//                Log.w(TAG, "STATE_PULL_RIGHT");
-//                break;
-//        }
+        switch (state) {
+            case STATE_NORMAL:
+                Log.w(TAG, "STATE_NORMAL");
+                break;
+            case STATE_PULL_LEFT:
+                Log.w(TAG, "STATE_PULL_LEFT");
+                break;
+            case STATE_PULL_RIGHT:
+                Log.w(TAG, "STATE_PULL_RIGHT");
+                break;
+        }
 
     }
 
@@ -570,130 +555,6 @@ public class HorizontalPullLayout extends ViewGroup implements NestedScrollingPa
         for (OnDragListener listener : mOnDragListeners) {
             listener.onStateChanged(state);
         }
-    }
-
-    @Override
-    public void computeScroll() {
-//        Log.w(TAG, "computeScroll: ");
-        if (mScroller.computeScrollOffset()) {
-            Log.w(TAG, "computeScroll: scrollTo " + mScroller.getCurrX());
-            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-            invalidate();
-        } else {
-            Log.w(TAG, "computeScroll: 完成 curScrollX " + getScrollX());
-        }
-
-
-    }
-
-    private OverScroller mScroller;
-
-    /*********************嵌套滚动部分***********************/
-    @Override
-    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        Log.w(TAG, "onStartNestedScroll 父控件是否接收嵌套滚动：" + ((getNestedScrollAxes() & nestedScrollAxes) != 0) + " ,child :" + child.getClass().getSimpleName() + " ,target: " + target.getClass().getSimpleName());
-        return ((getNestedScrollAxes() & nestedScrollAxes) != 0);
-
-    }
-
-    @Override
-    public void onNestedScrollAccepted(View child, View target, int axes) {
-        Log.w(TAG, "onNestedScrollAccepted  接收 ：" + axes + "  方向的滚动" + " ,child :" + child.getClass().getSimpleName() + " ,target: " + target.getClass().getSimpleName());
-//        super.onNestedScrollAccepted(child, target, axes);
-        Log.w(TAG, "onNestedScrollAccepted  ++ mScroller.abortAnimation()");
-        mScroller.abortAnimation();
-    }
-
-
-    @Override
-    public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed) {
-        Log.w(TAG, "onNestedPreScroll 子滚动前  dx: " + dx + " ,target: " + target.getClass().getSimpleName());
-
-        //左拉状态
-        if (getScrollX() > 0) {
-            if (dx > 0) {
-                //左滑的部分x全部消费掉
-                consumed[0] = dx;
-                scrollTo(getScrollX() + dx, getScrollY());
-            } else {
-                //往右拉操作
-                if (getScrollX() > Math.abs(dx)) {
-                    //全部消费掉
-                    consumed[0] = dx;
-                    scrollTo(getScrollX() + dx, getScrollY());
-                } else {
-                    //恢复到原点位置,消费掉恢复原点所需要的距离,其余的传给子View
-                    consumed[0] = -getScrollX();
-                    scrollTo(0, getScrollY());
-                }
-            }
-            return;
-        }
-
-        //右拉状态
-        if (getScrollX() < 0) {
-            if (dx < 0) {
-                //右拉操作 x全部消费掉
-                consumed[0] = dx;
-                Log.w(TAG, "Scroll X to  " + (getScrollX() + dx) + " cur ScrollX: " + getScrollX());
-                scrollTo(getScrollX() + dx, getScrollY());
-
-            } else {
-                if (Math.abs(getScrollX()) > dx) {
-                    consumed[0] = dx;
-                    Log.w(TAG, "Scroll X to  " + (getScrollX() + dx) + " cur ScrollX: " + getScrollX());
-                    scrollTo(getScrollX() + dx, getScrollY());
-                } else {
-                    consumed[0] = -getScrollX();
-                    Log.w(TAG, "Scroll X to  " + (getScrollX() + dx) + " cur ScrollX: " + getScrollX());
-                    scrollTo(0, getScrollY());
-                }
-            }
-            return;
-        }
-
-
-        if ((!mCenterView.canScrollHorizontally(1) && dx > 0) || (!mCenterView.canScrollHorizontally(-1) && dx < 0)) {
-            consumed[0] = dx;
-            scrollTo(getScrollX() + dx, getScrollY());
-        }
-    }
-
-    @Override
-    public void onNestedScroll(View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-        Log.w(TAG, "onNestedScroll 子滚动后  dxConsumed: " + dxConsumed + "  dxUnconsumed: " + dxUnconsumed + " ,target: " + target.getClass().getSimpleName());
-//        super.onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-    }
-
-    @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
-        Log.w(TAG, "onNestedPreFling  子fling前 velocityX: " + velocityX + " ,target: " + target.getClass().getSimpleName());
-//        return super.onNestedPreFling(target, velocityX, velocityY);
-        return true;
-    }
-
-    @Override
-    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
-        Log.w(TAG, "onNestedFling 子fling后 velocityX: " + velocityX + "  consumed: " + consumed + " ,target: " + target.getClass().getSimpleName());
-//        return super.onNestedFling(target, velocityX, velocityY, consumed);
-        return false;
-    }
-
-    @Override
-    public void onStopNestedScroll(View child) {
-        Log.w(TAG, "onStopNestedScroll 停止嵌套滚动" + " ,child: " + child.getClass().getSimpleName());
-//        doRelease();
-        if (getScrollX() != 0) {
-            Log.w(TAG, "mScroller.startScroll 恢复   cur ScrollX :" + getScrollX() + "  dx: " + (0 - getScrollX()));
-            mScroller.startScroll(getScrollX(), getScrollY(), 0 - getScrollX(), 0, 440);
-            invalidate();
-        }
-    }
-
-
-    @Override
-    public int getNestedScrollAxes() {
-        return ViewCompat.SCROLL_AXIS_HORIZONTAL;
     }
 
     public interface OnDragListener {

@@ -5,75 +5,15 @@
     <color name="colorAccent">#FF4081</color>
     <color name="red">#ff0000</color>
     <color name="green">#00ff00</color>
-    <color name="blue">#0000ff</color>
-
 
 
     <!--milk通用色板 -start-->
     <!--<color name="milk_white">@color/milk_Text</color>-->
-    <color name="milk_Red">#EE1A1A</color>
-    <color name="milk_Blue">#1B88EE</color>
-    <color name="milk_Yellow">#F5A623</color>
-    <color name="milk_Orange">#FE5D10</color>
-    <color name="milk_black33">#333333</color>
-    <color name="milk_black55">#555555</color>
-    <color name="milk_black66">#666666</color>
-    <color name="milk_black77">#777777</color>
-    <color name="milk_black99">#999999</color>
-    <color name="milk_blackAA">#AAAAAA</color>
-    <color name="milk_blackB4">#B4B4B4</color>
-    <color name="milk_blackBB">#bbbbbb</color>
-    <color name="milk_blackCC">#cccccc</color>
-    <color name="milk_blackDD">#dddddd</color>
-    <color name="milk_blackEE">#eeeeee</color>
-    <color name="milk_green">#10b61b</color>
     <!--分割面 RGB(243,245,247)-->
-    <color name="milk_bluegrey0">#EDEFF3</color>
     <!--分割线 RGB(245,247,249)-->
-    <color name="milk_bluegrey1">#f5f7f9</color>
-    <color name="milk_background">#ffffff</color>
-
-    <color name="milk_Text">#ffffff</color>
-    <color name="whiteFF">#FFFFFF</color>
-
-    <color name="milk_lightRed">#f6b6b6</color>
-    <color name="night_milk_lightRed">#f6b6b6</color>
-    <color name="milk_darkRed">#892323</color>
-    <color name="night_milk_darkRed">#631b1b</color>
 
     <!--night-->
-    <color name="night_milk_Red">#892323</color>
-    <color name="night_milk_Blue">#144E84</color>
-    <color name="night_milk_Yellow">#7A5313</color>
-    <color name="night_milk_Orange">#7C300B</color>
-    <color name="night_milk_black33">#777777</color>
-    <color name="night_milk_black55">#777777</color>
-    <color name="night_milk_black66">#666666</color>
-    <color name="night_milk_black77">#555555</color>
-    <color name="night_milk_black99">#505050</color>
-    <color name="night_milk_blackAA">#4B4B4B</color>
-    <color name="night_milk_blackB4">#444444</color>
-    <color name="night_milk_blackBB">#444444</color>
-    <color name="night_milk_blackCC">#333333</color>
-    <color name="night_milk_blackDD">#303030</color>
-    <color name="night_milk_blackEE">#282828</color>
-    <color name="night_green">#075a0d</color>
-    <color name="night_milk_bluegrey0">#272829</color>
-    <color name="night_milk_bluegrey1">#151516</color>
 
-    <color name="night_milk_background">#1d1d1e</color>
-    <color name="night_milk_Text">#888888</color>
-    <color name="night_whiteFF">#888888</color>
     <!--milk通用色板 -end-->
-
-    <color name="milk_Red_a70">#4CEE1A1A</color>
-    <color name="night_milk_Red_a70">#4C892323</color>
-
-    <color name="milk_Red_pressed">#D61717</color>
-    <color name="night_milk_Red_pressed">#7B1F1F</color>
-    <color name="milk_Red_20">#33EE1A1A</color>
-
-    <color name="milk_transparent">#00000000</color>
-    <color name="night_milk_transparent">#00000000</color>
 
 </resources>

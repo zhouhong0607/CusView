@@ -5,5 +5,4 @@
 
     <item android:drawable="@drawable/newsapp_flex_label_shape_unenable"  android:state_enabled="false"/>
 
-    <!--todo zh 夜间模式-->
 </selector>

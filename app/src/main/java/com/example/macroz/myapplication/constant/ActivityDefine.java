@@ -1,6 +1,7 @@
 package com.example.macroz.myapplication.constant;
 
 import com.example.macroz.myapplication.customview.activity.CameraTestActivity;
+import com.example.macroz.myapplication.customview.activity.ColorMatrixTestActivity;
 import com.example.macroz.myapplication.customview.activity.CubeActivity;
 import com.example.macroz.myapplication.customview.activity.FoldLayoutTestActivity;
 import com.example.macroz.myapplication.customview.activity.MatrixApiTestActivity;
@@ -9,10 +10,10 @@ import com.example.macroz.myapplication.customview.activity.PlaneRotateActivity;
 import com.example.macroz.myapplication.customview.activity.PolyToPolyTestActivity;
 import com.example.macroz.myapplication.customview.activity.Rotate3DTestActivity;
 import com.example.macroz.myapplication.customview.activity.ViewPagerTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.FlexLayoutTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.HorizontalPullTest;
+import com.example.macroz.myapplication.newsapptest.activity.GlideTestActivity;
+import com.example.macroz.myapplication.newsapptest.activity.HorizontalRecyclerTest;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.RotateAdTest;
+import com.example.macroz.myapplication.newsapptest.activity.VerticalRecyclerTest;
 
 /**
  * 类描述:
@@ -58,9 +59,9 @@ public class ActivityDefine {
 
 
     /**
-     * FlexLayout测试
+     * FlexLayout , Glide测试
      */
-    public static final String TEST_FLEXLAYOUT = FlexLayoutTestActivity.class.getName();
+    public static final String TEST_GLIDE = GlideTestActivity.class.getName();
     /**
      * lottie 测试
      */
@@ -73,13 +74,17 @@ public class ActivityDefine {
     public static final String TEST_VIEWPAGER = ViewPagerTestActivity.class.getName();
 
     /**
-     * 左拉右拉布局测试
+     * 测试ColorMatrix
      */
-    public static final String TEST_NEWS_HORIZONTAL_PULL = HorizontalPullTest.class.getName();
+    public static final String TEST_COLOR_MATRIX = ColorMatrixTestActivity.class.getName();
     /**
-     * 旋转广告test
+     * 横滑recycler
      */
-    public static final String TEST_NEWS_ROTATE_AD = RotateAdTest.class.getName();
+    public static final String HORIZONTAL_RECYCLER_TEST = HorizontalRecyclerTest.class.getName();
+    /**
+     * 垂直类型recycler（新闻列表）
+     */
+    public static final String VERTICAL_RECYCLER_TEST = VerticalRecyclerTest.class.getName();
 
 
 }

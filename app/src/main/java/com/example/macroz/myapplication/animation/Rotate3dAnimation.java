@@ -57,13 +57,13 @@ public class Rotate3dAnimation extends Animation {
         camera.save();
 
         // 调节深度
-        if (mReverse) {
-            camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);
-            Log.d(TAG, "调节Z的位置： " + mDepthZ * interpolatedTime);
-        } else {
-            camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));
-            Log.d(TAG, "调节Z的位置： " + mDepthZ * (1.0f - interpolatedTime));
-        }
+//        if (mReverse) {
+//            camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);
+//            Log.d(TAG, "调节Z的位置： " + mDepthZ * interpolatedTime);
+//        } else {
+//            camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));
+//            Log.d(TAG, "调节Z的位置： " + mDepthZ * (1.0f - interpolatedTime));
+//        }
         Log.d(TAG, "Camera Z的位置： " + camera.getLocationZ());
 
         // 绕y轴旋转
@@ -75,11 +75,11 @@ public class Rotate3dAnimation extends Animation {
 //        centerX+=centerX/2;
 
         // 修正失真，主要修改 MPERSP_0 和 MPERSP_1
-        float[] mValues = new float[9];
-        matrix.getValues(mValues);			    //获取数值
-        mValues[6] = mValues[6]/scale;			//数值修正
-        mValues[7] = mValues[7]/scale;			//数值修正
-        matrix.setValues(mValues);			    //重新赋值
+//        float[] mValues = new float[9];
+//        matrix.getValues(mValues);			    //获取数值
+//        mValues[6] = mValues[6]/scale;			//数值修正
+//        mValues[7] = mValues[7]/scale;			//数值修正
+//        matrix.setValues(mValues);			    //重新赋值
 
         matrix.preTranslate(-centerX, -centerY);
         matrix.postTranslate(centerX, centerY);

@@ -281,7 +281,6 @@ public class MyViewPager extends ViewGroup {
                             return applied;
                         }
 
-                        //todo zh没怎么看懂 大致的意思就是用所有子View Consume后最小的window inset设置下
                         final Rect res = mTempRect;
                         res.left = applied.getSystemWindowInsetLeft();
                         res.top = applied.getSystemWindowInsetTop();
@@ -3048,7 +3047,7 @@ public class MyViewPager extends ViewGroup {
 
 
     /**
-     * todo zh 这个是用来干嘛的？？？？
+     *
      */
     private class MyAccessibilityDelegate extends AccessibilityDelegateCompat {
 

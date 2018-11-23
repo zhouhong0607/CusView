@@ -4,7 +4,6 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
@@ -20,7 +19,6 @@
             android:maxLines="2" />
 
         <FrameLayout
-            android:id="@+id/img_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
