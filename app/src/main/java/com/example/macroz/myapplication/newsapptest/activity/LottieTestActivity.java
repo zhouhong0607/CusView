@@ -81,10 +81,6 @@ public class LottieTestActivity extends AppCompatActivity {
                 fileNameText.setText(fileName);
             }
         });
-
-        List<String> s = new ArrayList<>();
-
-
     }
 
     private void loadLottieFile(LottieAnimationView view) {

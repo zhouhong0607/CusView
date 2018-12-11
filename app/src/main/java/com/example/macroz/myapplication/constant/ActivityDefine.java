@@ -14,6 +14,7 @@ import com.example.macroz.myapplication.newsapptest.activity.GlideTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.HorizontalRecyclerTest;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.VerticalRecyclerTest;
+import com.example.macroz.myapplication.plugin.PluginTestActivity;
 
 /**
  * 类描述:
@@ -85,6 +86,10 @@ public class ActivityDefine {
      * 垂直类型recycler（新闻列表）
      */
     public static final String VERTICAL_RECYCLER_TEST = VerticalRecyclerTest.class.getName();
+    /**
+     * 测试插件化
+     */
+    public static final String PLUGIN_APP_TEST = PluginTestActivity.class.getName();
 
 
 }
