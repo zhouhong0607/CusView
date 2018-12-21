@@ -1,4 +1,4 @@
-package com.example.macroz.myapplication.animation;
+package com.example.macroz.myapplication.animator;
 
 import android.animation.Animator;
 

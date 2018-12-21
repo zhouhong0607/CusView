@@ -7,7 +7,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.animation.Rotate3dAnimation;
+import com.example.macroz.myapplication.animator.Rotate3dAnimation;
 
 public class Rotate3DTestActivity extends AppCompatActivity {
 

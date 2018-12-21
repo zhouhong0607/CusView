@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.Utils;
+import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 import com.example.macroz.myapplication.customview.view.MatrixApiTextView;
 

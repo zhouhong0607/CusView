@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.Utils;
+import com.example.macroz.myapplication.utils.Utils;
 
 import java.text.DecimalFormat;
 

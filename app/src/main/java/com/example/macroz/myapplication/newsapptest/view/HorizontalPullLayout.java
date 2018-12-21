@@ -14,13 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
-import com.example.macroz.myapplication.animation.SimpleAnimatorListener;
+import com.example.macroz.myapplication.animator.SimpleAnimatorListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 类描述:
+ * 类描述:   左侧、右侧拉出View的布局，用来支持横滑recyclerView与 Lottie的组合
  * 创建人:   macroz
  * 创建时间: 2018/9/28 下午2:12
  * 修改人:   macroz
@@ -30,44 +30,43 @@ import java.util.List;
 public class HorizontalPullLayout extends ViewGroup {
 
     private final String TAG = HorizontalPullLayout.class.getSimpleName();
-
+    //默认样式，动画跟随中间view移动
+    public static final int STYLE_FOLLOW = 0;
+    // //动画在视觉上固定在屏幕右侧/左侧
+    public static final int STYLE_STICKY = 1;
+    //固定的阈值
+    private int mStyle = STYLE_FOLLOW;
     //中心主View
-    private View mCenterView;
+    protected View mCenterView;
     //右侧拉出的View
-    private View mRightExtraView;
+    protected View mRightExtraView;
     //左侧拉出的View
-    private View mLeftExtraView;
-
+    protected View mLeftExtraView;
     //手势检测部分
     private PointF mLastActionPoint;
-    private float xScrollDiff;
-
+    //计算当前 一个move事件的 移动量
+    private float xMoveDiff;
     //原始位置
     private static final int STATE_NORMAL = 0;
     //左拉出状态
-    private static final int STATE_PULL_LEFT = 1;
+    public static final int STATE_PULL_LEFT = 1;
     //右拉出状态
-    private static final int STATE_PULL_RIGHT = 2;
-    private int mState = STATE_NORMAL;
-
+    public static final int STATE_PULL_RIGHT = 2;
+    public int mState = STATE_NORMAL;
     //右侧 ,向左拉出View的开关
     private boolean mRightDragEnable = false;
     //左侧 , 向右拉出View的开关
     private boolean mLeftDragEnable = false;
-
     //动画相关
     private ValueAnimator mReturnAnimator;
     //动画时长
     private static final int ANIMATOR_DURATION = 200;
-
     //滚动的阈值
     private float mDragThreshold = 0.75f;
     //计算阈值的距离 , progress=1 时拉出的距离
-    private float mDragLimit = Integer.MAX_VALUE >> 2;
-
+    protected float mDragLimit = Integer.MAX_VALUE >> 2;
     //允许拉出的最大距离(像素值)
     private float mMaxDragDistance = Integer.MAX_VALUE >> 2;
-
     private List<OnDragListener> mOnDragListeners;
 
     public HorizontalPullLayout(Context context) {
@@ -76,7 +75,6 @@ public class HorizontalPullLayout extends ViewGroup {
 
     public HorizontalPullLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-
     }
 
     public HorizontalPullLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -215,6 +213,27 @@ public class HorizontalPullLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        switch (mStyle) {
+            case STYLE_FOLLOW:
+                layoutByFollowMode(changed, l, t, r, b);
+                break;
+            case STYLE_STICKY:
+                layoutByFixMode(changed, l, t, r, b);
+                break;
+        }
+    }
+
+    /**
+     * MODE_FOLLOW
+     * extraView摆放在CenterView两侧
+     *
+     * @param changed
+     * @param l
+     * @param t
+     * @param r
+     * @param b
+     */
+    private void layoutByFollowMode(boolean changed, int l, int t, int r, int b) {
         //摆放中心View
         int startX = getPaddingLeft(), startY = getPaddingTop();
         int allowUsePixel = 0;
@@ -234,7 +253,6 @@ public class HorizontalPullLayout extends ViewGroup {
         }
         //摆放中心View
         mCenterView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
-        Log.i(TAG, "布局 mCenterView:" + startX + " , " + startY + " , " + (startX + xLayoutPixel) + " , " + startY + yLayoutPixel);
 
         //摆放左侧View
         startX = -mLeftExtraView.getMeasuredWidth();
@@ -249,7 +267,6 @@ public class HorizontalPullLayout extends ViewGroup {
             startY = getStartY(leftLP, yLayoutPixel);
         }
         mLeftExtraView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
-        Log.i(TAG, "布局 mRightExtraView: " + startX + " , " + startY + " , " + (startX + xLayoutPixel) + " , " + startY + yLayoutPixel);
 
         //摆放右侧View
         startX = getMeasuredWidth();
@@ -264,9 +281,69 @@ public class HorizontalPullLayout extends ViewGroup {
             startY = getStartY(rightLP, yLayoutPixel);
         }
         mRightExtraView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
-        Log.i(TAG, "布局 mLeftExtraView: " + startX + " , " + startY + " , " + (startX + xLayoutPixel) + " , " + startY + yLayoutPixel);
-
     }
+
+
+    /**
+     * MODE_FOLLOW
+     * extraView固定在CenterView两侧下方
+     *
+     * @param changed
+     * @param l
+     * @param t
+     * @param r
+     * @param b
+     */
+    private void layoutByFixMode(boolean changed, int l, int t, int r, int b) {
+        //摆放中心View
+        int startX = getPaddingLeft(), startY = getPaddingTop();
+        int xLayoutPixel = mLeftExtraView.getMeasuredWidth(), yLayoutPixel = mLeftExtraView.getMeasuredHeight();
+        if (checkLayoutParams(mLeftExtraView.getLayoutParams())) {
+            LayoutParams leftLP = (LayoutParams) mLeftExtraView.getLayoutParams();
+            startX += leftLP.leftMargin;
+            yLayoutPixel = Math.min(mLeftExtraView.getMeasuredHeight()
+                    , getMeasuredHeight() - getPaddingTop() - getPaddingBottom() - leftLP.topMargin - leftLP.bottomMargin);
+            startY = getStartY(leftLP, yLayoutPixel);
+        }
+        mLeftExtraView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
+
+        //摆放右侧View
+        startX = getMeasuredWidth() - mRightExtraView.getMeasuredWidth();
+        startY = getPaddingTop();
+        xLayoutPixel = mRightExtraView.getMeasuredWidth();
+        yLayoutPixel = mRightExtraView.getMeasuredHeight();
+        if (checkLayoutParams(mRightExtraView.getLayoutParams())) {
+            LayoutParams rightLP = (LayoutParams) mRightExtraView.getLayoutParams();
+            startX -= rightLP.rightMargin;
+            yLayoutPixel = Math.min(mRightExtraView.getMeasuredHeight()
+                    , getMeasuredHeight() - getPaddingTop() - getPaddingBottom() - rightLP.topMargin - rightLP.bottomMargin);
+            startY = getStartY(rightLP, yLayoutPixel);
+        }
+        mRightExtraView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
+
+
+        //摆放中心View
+        startX = getPaddingLeft();
+        startY = getPaddingTop();
+        int allowUsePixel = 0;
+        xLayoutPixel = mCenterView.getMeasuredWidth();
+        yLayoutPixel = mCenterView.getMeasuredHeight();
+        //根据布局参数的设置 更新摆放参数
+        if (checkLayoutParams(mCenterView.getLayoutParams())) {
+            LayoutParams cenLP = (LayoutParams) mCenterView.getLayoutParams();
+            allowUsePixel = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
+            //计算 x 可用摆放的像素值
+            xLayoutPixel = Math.min(xLayoutPixel, allowUsePixel - cenLP.leftMargin - cenLP.rightMargin);
+            //更新下Y方向可用的像素
+            allowUsePixel = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
+            yLayoutPixel = Math.min(yLayoutPixel, allowUsePixel - cenLP.topMargin - cenLP.bottomMargin);
+            startX = getStartX(cenLP, xLayoutPixel);
+            startY = getStartY(cenLP, yLayoutPixel);
+        }
+        //摆放中心View
+        mCenterView.layout(startX, startY, startX + xLayoutPixel, startY + yLayoutPixel);
+    }
+
 
     /**
      * 获取垂直方向摆放起始点
@@ -307,25 +384,24 @@ public class HorizontalPullLayout extends ViewGroup {
     /**
      * 更新子View的位置
      *
-     * @param scrollX x方向移动量
+     * @param transX x方向移动量
      */
-    private void updateChildrenScrollX(float scrollX) {
+    protected void updateTransX(float transX) {
 
-        if (!mRightDragEnable && scrollX > 0) {
-            scrollX = 0;
+        if (!mRightDragEnable && transX < 0) {
+            transX = 0;
         }
-        if (!mLeftDragEnable && scrollX < 0) {
-            scrollX = 0;
+        if (!mLeftDragEnable && transX > 0) {
+            transX = 0;
         }
-
 
         //左拉状态 transX不能 > 0 ,右拉状态 transX不能 <0
         if (mState == STATE_PULL_LEFT) {
-            scrollX = scrollX > 0 ? scrollX : 0;
-            scrollX = scrollX < mMaxDragDistance ? scrollX : mMaxDragDistance;
+            transX = transX < 0 ? transX : 0;
+            transX = transX > -mMaxDragDistance ? transX : -mMaxDragDistance;
         } else if (mState == STATE_PULL_RIGHT) {
-            scrollX = scrollX < 0 ? scrollX : 0;
-            scrollX = scrollX > -mMaxDragDistance ? scrollX : -mMaxDragDistance;
+            transX = transX > 0 ? transX : 0;
+            transX = transX < mMaxDragDistance ? transX : mMaxDragDistance;
         }
 
         // 添加阻尼效果
@@ -333,24 +409,39 @@ public class HorizontalPullLayout extends ViewGroup {
         if (mMaxDragDistance == 0) {
             dampingRatio = 1;
         } else {
-            dampingRatio = Math.abs(getScrollX()) / mMaxDragDistance;
+            dampingRatio = Math.abs(getTransX()) / mMaxDragDistance;
         }
-        Log.e(TAG, "dampingRatio:  " + dampingRatio);
-        Log.e(TAG, "before scrollX:  " + scrollX);
-        scrollX = getScrollX() + (scrollX - getScrollX()) * (1 - dampingRatio);
 
-        scrollTo((int) scrollX, 0);
+        transX = getTransX() + (transX - getTransX()) * (1 - dampingRatio);
+        Log.e(TAG, "dampingRatio:  " + dampingRatio);
+        Log.e(TAG, "before scrollX:  " + transX);
+        setChildTransXByMode(transX);
         //通知监听
         notifyOnDragProgressUpdate(getProgress(), mState);
-        Log.d(TAG, "updateChildrenScrollX:  " + scrollX);
     }
 
     public float getProgress() {
         if (mDragLimit == 0) {
             return 1f;
         }
-        return Math.abs(getScrollX()) / mDragLimit;
+        return Math.abs(getTransX()) / mDragLimit;
     }
+
+    //根据当前的Mode设置子View 的位置
+    public void setChildTransXByMode(float transX) {
+        mCenterView.setTranslationX(transX);
+        //一般情况下 extraView 跟随主View滚动
+        if (mStyle == STYLE_FOLLOW) {
+            mLeftExtraView.setTranslationX(transX);
+            mRightExtraView.setTranslationX(transX);
+        }
+    }
+
+    //获取当前的滚动量
+    public float getTransX() {
+        return mCenterView.getTranslationX();
+    }
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -375,10 +466,10 @@ public class HorizontalPullLayout extends ViewGroup {
             case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_MOVE:
-                xScrollDiff = mLastActionPoint.x - ev.getX();
+                xMoveDiff = ev.getX() - mLastActionPoint.x;
                 break;
             default:
-                xScrollDiff = 0f;
+                xMoveDiff = 0f;
         }
         mLastActionPoint.set(ev.getX(), ev.getY());
 
@@ -421,19 +512,19 @@ public class HorizontalPullLayout extends ViewGroup {
         }
 
         //非0 位置 拦截所有事件
-        if (getScrollX() != 0) {
+        if (getTransX() != 0) {
             return true;
         }
 
         //0 位置时 , 仅拦截 向左拉出  向右拉出动作
         if (ev.getAction() == MotionEvent.ACTION_MOVE) {
             //左拉( 1  检查向左滚动)
-            if (!mCenterView.canScrollHorizontally(1) && xScrollDiff > 0 && mRightDragEnable) {
+            if (!mCenterView.canScrollHorizontally(1) && xMoveDiff < 0 && mRightDragEnable) {
                 setState(STATE_PULL_LEFT);
                 return true;
             }
             //右拉( -1 检查 向右滚动)
-            if (!mCenterView.canScrollHorizontally(-1) && xScrollDiff < 0 && mLeftDragEnable) {
+            if (!mCenterView.canScrollHorizontally(-1) && xMoveDiff > 0 && mLeftDragEnable) {
                 setState(STATE_PULL_RIGHT);
                 return true;
             }
@@ -472,7 +563,7 @@ public class HorizontalPullLayout extends ViewGroup {
                 break;
             case MotionEvent.ACTION_MOVE:
                 //设置子View的位置
-                updateChildrenScrollX(getScrollX() + xScrollDiff);
+                updateTransX(getTransX() + xMoveDiff);
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
@@ -483,29 +574,28 @@ public class HorizontalPullLayout extends ViewGroup {
     }
 
     //恢复到起始的位置
-    private void doRelease() {
+    protected void doRelease() {
+        Log.d(TAG, "doRelease()");
         if (getProgress() >= mDragThreshold) {
             notifyOnDragOver();
         }
-
-        mReturnAnimator.setFloatValues(getScrollX(), 0);
+        mReturnAnimator.setFloatValues(getTransX(), 0);
         mReturnAnimator.setDuration(ANIMATOR_DURATION);
         mReturnAnimator.setInterpolator(new LinearInterpolator());
         mReturnAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                updateChildrenScrollX((float) animation.getAnimatedValue());
+                updateTransX((float) animation.getAnimatedValue());
             }
         });
         mReturnAnimator.addListener(new SimpleAnimatorListener() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 //判断下trans 防止 cancel的时候回调设置状态normal
-                if (getScrollX() == 0) {
+                if (getTransX() == 0) {
                     setState(STATE_NORMAL);
                 }
             }
-
         });
         mReturnAnimator.start();
     }
@@ -531,7 +621,7 @@ public class HorizontalPullLayout extends ViewGroup {
         return p instanceof LayoutParams;
     }
 
-    private void setState(int state) {
+    protected void setState(int state) {
         //拉出的时候不允许父View拦截事件
         if (state == STATE_PULL_LEFT || state == STATE_PULL_RIGHT) {
             requestDisallowInterceptTouchEvent(true);
@@ -547,15 +637,16 @@ public class HorizontalPullLayout extends ViewGroup {
 
         switch (state) {
             case STATE_NORMAL:
-                Log.w(TAG, "STATE_NORMAL");
+                Log.d(TAG, "STATE_NORMAL");
                 break;
             case STATE_PULL_LEFT:
-                Log.w(TAG, "STATE_PULL_LEFT");
+                Log.d(TAG, "STATE_PULL_LEFT");
                 break;
             case STATE_PULL_RIGHT:
-                Log.w(TAG, "STATE_PULL_RIGHT");
+                Log.d(TAG, "STATE_PULL_RIGHT");
                 break;
         }
+
     }
 
     @Override
@@ -637,17 +728,33 @@ public class HorizontalPullLayout extends ViewGroup {
             return;
         }
         for (OnDragListener listener : mOnDragListeners) {
-            listener.onStateChanged(state);
+            if (listener != null) {
+                listener.onStateChanged(state);
+            }
         }
     }
 
+    /**
+     * 切换模式
+     *
+     * @param style
+     */
+    public void setStyle(int style) {
+        mStyle = style;
+        requestLayout();
+    }
+
+    public int getStyle() {
+        return mStyle;
+    }
 
     /**
-     * 处理拉出View的布局, (右侧LottieView 摆放位置,宽高设置)
+     * 处理子View的布局
+     * 提供margin , gravity的设置
      */
     public static class LayoutParams extends MarginLayoutParams {
         /**
-         * 拉出部分View的 gravity
+         * gravity  垂直方向摆放的时候会忽略父View的padding值
          * {@link Gravity#TOP }
          * {@link Gravity#CENTER }
          * {@link Gravity#CENTER_VERTICAL }

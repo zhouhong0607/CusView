@@ -1,23 +1,13 @@
 package com.example.macroz.myapplication.customview.view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 
-import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
-
-import java.text.DecimalFormat;
 
 /**
  * 类描述:   测试camera基本api

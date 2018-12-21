@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.Utils;
+import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.customview.fragment.PagerItemFragment;
 import com.example.macroz.myapplication.customview.adapter.MyFragmentPagerAdapter;
 import com.example.macroz.myapplication.customview.adapter.MyPagerAdapter;

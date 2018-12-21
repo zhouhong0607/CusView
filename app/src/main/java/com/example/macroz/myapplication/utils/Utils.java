@@ -1,4 +1,4 @@
-package com.example.macroz.myapplication;
+package com.example.macroz.myapplication.utils;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

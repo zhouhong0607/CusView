@@ -7,45 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".newsapptest.activity.HorizontalRecyclerTest">
 
-    <com.example.macroz.myapplication.newsapptest.view.HorizontalPullLayout
-        android:id="@+id/test_horizontal_pull_layout"
+
+    <com.example.macroz.myapplication.newsapptest.view.RightLottieRecyclerView
+        android:id="@+id/test_right_lottie_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="20dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="5dp">
+        android:layout_height="wrap_content">
 
-        <!--查看更多lottie-->
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/test_left_lottie"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            app:lottie_fileName="news_reader_viewmore4.json" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/test_horizontal_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="5dp">
-
-        </android.support.v7.widget.RecyclerView>
-
-        <!--查看更多lottie-->
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/test_right_lottie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            app:lottie_fileName="news_reader_viewmore4.json" />
-
-    </com.example.macroz.myapplication.newsapptest.view.HorizontalPullLayout>
+    </com.example.macroz.myapplication.newsapptest.view.RightLottieRecyclerView>
 
 
     <LinearLayout
@@ -55,7 +23,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/test_horizontal_pull_layout"
+        app:layout_constraintBottom_toBottomOf="@+id/test_right_lottie_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 

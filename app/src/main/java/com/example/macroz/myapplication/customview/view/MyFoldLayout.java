@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.Utils;
+import com.example.macroz.myapplication.utils.Utils;
 
 /**
  * 折叠布局

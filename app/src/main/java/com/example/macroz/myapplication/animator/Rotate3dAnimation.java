@@ -1,6 +1,5 @@
-package com.example.macroz.myapplication.animation;
+package com.example.macroz.myapplication.animator;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Camera;
 import android.graphics.Matrix;
