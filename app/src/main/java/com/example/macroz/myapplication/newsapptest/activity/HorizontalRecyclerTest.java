@@ -46,23 +46,19 @@ public class HorizontalRecyclerTest extends AppCompatActivity {
         //Adapter
         mHoriAdapter = new HorizontalAdapter(this);
         mRecyclerView.setAdapter(mHoriAdapter);
-        //配置动画
-        RecyclerItemAnimator animator = new RecyclerItemAnimator();
-        animator.setAddAnimator(new ScaleAddAnimator());
-        mRecyclerView.setItemAnimator(animator);
         //自动定位
         RecyclerAnimatorManager animatorManager = new RecyclerAnimatorManager(mRecyclerView);
         animatorManager.setAutoLocate(true);
         mLottieRecyclerView.setAnimatorManager(animatorManager);
-        //配置lottie
-        PullLayoutConfig config = new PullLayoutConfig.Builder()
-                .maxDis(500)
-                .limit(240)
-                .threshold(0.978f)
-                .bounceRatio(0.3f)
-                .style(HorizontalPullLayout.STYLE_STICKY)
-                .rightLottie("news_reader_viewmore4.json").build();
-        mLottieRecyclerView.applyConfig(config);
+//        //配置lottie
+//        PullLayoutConfig config = new PullLayoutConfig.Builder()
+//                .maxDis(500)
+//                .limit(240)
+//                .threshold(0.978f)
+//                .bounceRatio(0.3f)
+//                .style(HorizontalPullLayout.STYLE_STICKY)
+//                .rightLottie("news_reader_viewmore4.json").build();
+        mLottieRecyclerView.applyConfig(new PullLayoutConfig.Builder(true).build());
     }
 
 

@@ -24,13 +24,13 @@ public class RecyclerAnimatorManager {
     private boolean autoLocateEnable;
     private RecyclerItemAnimator animator;
     private StartSnapHelper mHelper;
-
     /**
      * @param recyclerView
      */
     public RecyclerAnimatorManager(@NonNull RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
         mHelper = new StartSnapHelper();
+        mHelper.bindRecyclerView(mRecyclerView);
         //添加 add 动画
         animator = new RecyclerItemAnimator();
         animator.setAddAnimator(new ScaleAddAnimator());
@@ -48,12 +48,21 @@ public class RecyclerAnimatorManager {
         if (setAutoLocate) {
             //这里确保下listener==null 避免snapHelp 绑定View的时候 crash
             mRecyclerView.setOnFlingListener(null);
-            mHelper.attachToRecyclerView(mRecyclerView);
+            mHelper.enableAutoLocate(true);
             autoLocateEnable = true;
         } else {
-            mHelper.attachToRecyclerView(null);
+            mHelper.enableAutoLocate(false);
             autoLocateEnable = false;
         }
+    }
+
+    /**
+     * 是否开启自动定位
+     *
+     * @return
+     */
+    public boolean isAutoLocateEnable() {
+        return autoLocateEnable;
     }
 
     /**
@@ -64,6 +73,27 @@ public class RecyclerAnimatorManager {
     public boolean isFling() {
         return mHelper != null && mHelper.isFling();
     }
+
+
+    /**
+     * 滚动速度调整 设置每英寸滚动时间, 时间越短滚动速度越快
+     *
+     * @param timePerInch
+     */
+    public void setTimePerInch(float timePerInch) {
+        this.mHelper.setTimePerInch(timePerInch);
+    }
+
+    /**
+     * 设置阻尼效果
+     *
+     * @param dampingRatio
+     */
+    public void setDampingRatio(float dampingRatio) {
+        this.mHelper.setDampingRatio(dampingRatio);
+    }
+
+
 
     /**
      * 设置 Add动画

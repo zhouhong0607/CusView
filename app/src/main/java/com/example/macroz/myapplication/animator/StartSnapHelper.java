@@ -17,6 +17,11 @@ import android.view.View;
 public class StartSnapHelper extends LinearSnapHelper {
 
     private static final String TAG = "StartSnapHelper";
+    //每英寸滚动的时间
+    private static final float SCROLL_TIME_PER_INCH = 50.0f;
+
+    private float timePerInch = SCROLL_TIME_PER_INCH;
+    private float dampingRatio = 1f;
 
     private OrientationHelper mHorizontalHelper, mVerticalHelper;
     private RecyclerView mRecyclerView;
@@ -24,30 +29,41 @@ public class StartSnapHelper extends LinearSnapHelper {
     private boolean mIsFling = false;
 
     public StartSnapHelper() {
+
     }
 
-    @Override
-    public void attachToRecyclerView(@Nullable RecyclerView recyclerView) throws IllegalStateException {
-        super.attachToRecyclerView(recyclerView);
+    /**
+     * 设置RecyclerView
+     * @param recyclerView
+     */
+    public void bindRecyclerView(@NonNull RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
-        //!!!!!! 暂时先这么解决 区分fling ，之后看看这么区分 fling定位和 普通松手定位
-        if (mRecyclerView == null) {
+    }
+
+
+    public void enableAutoLocate(boolean enable){
+        if(mRecyclerView==null){
             return;
         }
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && mIsFling) {
-                    //将个延时等待其他 addOnScrollListener处理完
-                    recyclerView.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mIsFling = false;
-                        }
-                    }, 20);
+        if(enable){
+            attachToRecyclerView(mRecyclerView);
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && mIsFling) {
+                        //将个延时等待其他 addOnScrollListener处理完
+                        recyclerView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mIsFling = false;
+                            }
+                        }, 20);
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            attachToRecyclerView(null);
+        }
     }
 
     @Nullable
@@ -75,6 +91,31 @@ public class StartSnapHelper extends LinearSnapHelper {
     public boolean onFling(int velocityX, int velocityY) {
         mIsFling = true;
         return super.onFling(velocityX, velocityY);
+    }
+
+    /**
+     * 滚动速度调整 设置每英寸滚动时间, 时间越短滚动速度越快
+     *
+     * @param timePerInch
+     */
+    public void setTimePerInch(float timePerInch) {
+        this.timePerInch = timePerInch;
+    }
+
+    /**
+     * 设置阻尼效果
+     *
+     * @param dampingRatio
+     */
+    public void setDampingRatio(float dampingRatio) {
+        this.dampingRatio = dampingRatio;
+    }
+
+    @Override
+    public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
+        float vX = velocityX * 1f / dampingRatio;
+        Log.d(TAG, "velocityX： " + velocityX + " after cut , vX: " + vX);
+        return super.findTargetSnapPosition(layoutManager, (int) vX, velocityY);
     }
 
     /**
@@ -174,13 +215,15 @@ public class StartSnapHelper extends LinearSnapHelper {
                 }
             }
 
-//            @Override
-//            protected int calculateTimeForScrolling(int dx) {
-//                return 400;
-//            }
+            @Override
+            protected int calculateTimeForScrolling(int dx) {
+                int time = super.calculateTimeForScrolling(dx);
+                Log.d(TAG, "time for scrolling : " + time);
+                return time;
+            }
 
             protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
-                return 100.0F / (float) displayMetrics.densityDpi;
+                return timePerInch / (float) displayMetrics.densityDpi;
             }
         };
     }

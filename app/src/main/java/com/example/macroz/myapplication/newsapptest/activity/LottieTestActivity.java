@@ -16,14 +16,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottieTestActivity extends AppCompatActivity {
 
     private float progress = 0f;
 
-    String fileName = "news_reader_viewmore.json";
+    String fileName = "lottie/news_reader_viewmore.json";
     String wsDir = Environment.getExternalStorageDirectory().getPath() + "/Tencent/MicroMsg/Download/";
     String rootDir = Environment.getExternalStorageDirectory().getPath() + "/";
     String lottiePath = wsDir + fileName;
@@ -34,8 +32,8 @@ public class LottieTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lottie_test);
         final LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.test_lottie_view);
-        animationView.setImageAssetsFolder("images/");
-        animationView.setAnimation("news_reader_viewmore.json");
+        animationView.setImageAssetsFolder("lottie/images/");
+        animationView.setAnimation("lottie/news_reader_viewmore.json");
         animationView.loop(true);
         animationView.playAnimation();
 

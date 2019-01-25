@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
         mList.add(new GuideBean("Cube ViewPager 测试", ActivityDefine.TEST_VIEWPAGER));
         /********************news app测试部分*********************/
         mList.add(new GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE));
-        mList.add(new GuideBean("Glide Test", ActivityDefine.TEST_GLIDE));
+        mList.add(new GuideBean("Net Test", ActivityDefine.TEST_NET));
 
         //color matrix
         mList.add(new GuideBean("Color Matrix ", ActivityDefine.TEST_COLOR_MATRIX));

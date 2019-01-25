@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:name=".mainactivity.BaseApplication"
         android:allowBackup="true"
@@ -26,7 +26,7 @@
         <activity android:name=".customview.activity.MatrixPrePostTestActivity" />
         <activity android:name=".customview.activity.PlaneRotateActivity" />
         <activity android:name=".customview.activity.CubeActivity" />
-        <activity android:name=".newsapptest.activity.GlideTestActivity" />
+        <activity android:name=".newsapptest.activity.NetTestActivity" />
         <activity android:name=".customview.activity.MatrixApiTestActivity" />
         <activity android:name=".newsapptest.activity.LottieTestActivity" />
         <activity android:name=".customview.activity.PolyToPolyTestActivity" />

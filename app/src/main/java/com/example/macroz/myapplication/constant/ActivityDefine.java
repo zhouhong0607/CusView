@@ -10,7 +10,7 @@ import com.example.macroz.myapplication.customview.activity.PlaneRotateActivity;
 import com.example.macroz.myapplication.customview.activity.PolyToPolyTestActivity;
 import com.example.macroz.myapplication.customview.activity.Rotate3DTestActivity;
 import com.example.macroz.myapplication.customview.activity.ViewPagerTestActivity;
-import com.example.macroz.myapplication.newsapptest.activity.GlideTestActivity;
+import com.example.macroz.myapplication.newsapptest.activity.NetTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.HorizontalRecyclerTest;
 import com.example.macroz.myapplication.newsapptest.activity.LottieTestActivity;
 import com.example.macroz.myapplication.newsapptest.activity.VerticalRecyclerTest;
@@ -62,7 +62,7 @@ public class ActivityDefine {
     /**
      * FlexLayout , Glide测试
      */
-    public static final String TEST_GLIDE = GlideTestActivity.class.getName();
+    public static final String TEST_NET = NetTestActivity.class.getName();
     /**
      * lottie 测试
      */

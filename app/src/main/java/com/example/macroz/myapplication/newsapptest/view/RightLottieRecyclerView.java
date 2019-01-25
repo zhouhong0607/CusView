@@ -1,6 +1,8 @@
 package com.example.macroz.myapplication.newsapptest.view;
 
+import android.app.Service;
 import android.content.Context;
+import android.os.Vibrator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -25,11 +27,23 @@ import com.example.macroz.myapplication.utils.ViewUtils;
  */
 public class RightLottieRecyclerView extends HorizontalPullLayout {
 
-    private static final String TAG = RightLottieRecyclerView.class.getSimpleName();
+
+    /**
+     * 震动时长
+     */
+    private static final long VIBRATE_DURATION = 50L;
 
     private RecyclerView mRecyclerView;
     private LottieAnimationView mLottieView;
     private RecyclerAnimatorManager mAnimatorManager;
+    private String mRightLottieSrc;
+    private String mRightLottieSrcNight;
+    private PullLayoutConfig mConfig;
+
+    /**
+     * 保证只触发一次震动
+     */
+    private boolean vibrateTrigger = false;
 
     //配置 RecyclerView fling 到结尾弹出的 lottie比例(0~1) , 设置0 关闭弹出效果
     private boolean bounceEnable;
@@ -41,8 +55,10 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
     private RecyclerView.OnScrollListener mScrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            Log.w(TAG, "onScrollStateChanged: " + newState);
-            if (newState == RecyclerView.SCROLL_STATE_IDLE && !recyclerView.canScrollHorizontally(1) && !isInTouching && mAnimatorManager.isFling()) {
+            //fling到结尾,触发弹出效果
+            if (newState == RecyclerView.SCROLL_STATE_IDLE
+                    && !recyclerView.canScrollHorizontally(1)
+                    && !isInTouching) {
                 LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
                 if (lm.findLastCompletelyVisibleItemPosition() == lm.getItemCount() - 1) {
                     triggerBounce();
@@ -89,7 +105,9 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
      *
      * @param config
      */
-    public void applyConfig(PullLayoutConfig config) {
+    public void applyConfig(final PullLayoutConfig config) {
+        vibrateTrigger = false;
+        mConfig = config;
         if (mLottieView == null && DataUtils.dataValid(config.getRightLottieFile())) {
             return;
         }
@@ -108,9 +126,9 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
 
         //配置了View 和 lottie文件的默认打开 开关
         setRightDragEnable(true);
-        if (DataUtils.dataValid(config.getRightLottieFile())) {
-            mLottieView.setAnimation(config.getRightLottieFile());
-        }
+        mRightLottieSrc = config.getRightLottieFile();
+        mRightLottieSrcNight = config.getRightLottieFileNight();
+        syncRightLottieSrc();
         ViewUtils.setViewVisible(mLottieView);
         //lottie 文件 的宽高比是不确定的 ,  View和文件的 宽高比不同Lottie会产生变形,这里可以通过lp手动设置宽度,高度取决于横滑卡片的高度
         if (DataUtils.dataValid(config.getRightLayoutParams())) {
@@ -123,6 +141,7 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
                 if (mLottieView != null) {
                     mLottieView.setProgress(progress);
                 }
+                checkToPerformVibrate(progress);
             }
         });
         //配置 fling弹出效果
@@ -132,7 +151,6 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
             setStyle(config.getStyle());
         }
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -168,10 +186,35 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
      * 触发弹出效果
      */
     public void triggerBounce() {
+//        NTLog.d(TAG,"triggerBounce() -> doRelease()");
         float transX = mDragLimit * bounceRatio;
         setState(STATE_PULL_LEFT);
         updateTransX(-transX);
         doRelease();
+    }
+
+    /**
+     * 震动效果
+     */
+    private void checkToPerformVibrate(float progress) {
+        if (mConfig == null || !mConfig.isVibrate()) {
+            return;
+        }
+
+        if (progress < mConfig.getDragThreshold()) {
+            vibrateTrigger = false;
+        }
+
+        /**
+         * 越界，没触发过震动 触发一次震动
+         */
+        if (progress > mConfig.getDragThreshold() && !vibrateTrigger) {
+            Vibrator vibrator = (Vibrator) getContext().getSystemService(Service.VIBRATOR_SERVICE);
+            if (DataUtils.dataValid(vibrator)) {
+                vibrator.vibrate(VIBRATE_DURATION);
+            }
+            vibrateTrigger = true;
+        }
     }
 
     public void setAnimatorManager(RecyclerAnimatorManager animatorManager) {
@@ -185,4 +228,9 @@ public class RightLottieRecyclerView extends HorizontalPullLayout {
     public LottieAnimationView getLottieView() {
         return mLottieView;
     }
+
+    private void syncRightLottieSrc() {
+        mLottieView.setAnimation(mRightLottieSrc);
+    }
+
 }

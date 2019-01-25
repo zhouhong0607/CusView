@@ -23,6 +23,8 @@ public class PullLayoutConfig {
     private float dragThreshold;    //配置 跳转的阈值 , 大于该值 会回调onDragOver() 方法  取值(0~1  对应 progress)
     private float bounceRatio;     //配置 RecyclerView fling 到结尾弹出的 lottie比例(0~1) , 设置0 关闭弹出效果
 
+    private boolean vibrate;       //配置跳转震动
+
     /**
      * {@link HorizontalPullLayout#STYLE_FOLLOW}
      * {@link HorizontalPullLayout#STYLE_STICKY}
@@ -34,8 +36,8 @@ public class PullLayoutConfig {
      * 处理 lottie更新 和跳转
      */
     private HorizontalPullLayout.OnDragListener mDragListener;
-    //左、 右侧lottie文件
-    private String leftLottieFile, rightLottieFile;
+    //左、 右侧lottie文件以及其夜间
+    private String leftLottieFile, rightLottieFile, leftLottieFileNight, rightLottieFileNight;
 
     //左侧 右侧 布局参数 ,  部分lottie 文件 不同的宽高比 ,  View和文件的 比例不同Lottie会产生变形,这里可以通过lp手动设置宽度
     private HorizontalPullLayout.LayoutParams leftLayoutParams, rightLayoutParams, centerLayoutParams;
@@ -131,17 +133,63 @@ public class PullLayoutConfig {
         this.style = style;
     }
 
+    public String getLeftLottieFileNight() {
+        return leftLottieFileNight;
+    }
+
+    public void setLeftLottieFileNight(String leftLottieFileNight) {
+        this.leftLottieFileNight = leftLottieFileNight;
+    }
+
+    public String getRightLottieFileNight() {
+        return rightLottieFileNight;
+    }
+
+    public void setRightLottieFileNight(String rightLottieFileNight) {
+        this.rightLottieFileNight = rightLottieFileNight;
+    }
+
+    public boolean isVibrate() {
+        return vibrate;
+    }
+
+    public void setVibrate(boolean vibrate) {
+        this.vibrate = vibrate;
+    }
+
     public static class Builder {
         private float maxDragDis;     //配置最大可以拉出的距离  像素值
         private float dragLimit;        //配置 计算 progress的 最大距离,  会根据当前拉出的像素/该值  计算progress
         private float dragThreshold;    //配置 跳转的阈值 , 大于该值 会回调onDragOver() 方法  取值(0~1  对应 progress)
         private HorizontalPullLayout.OnDragListener mDragListener;
-        private String leftLottieFile, rightLottieFile;
+        private String leftLottieFile, rightLottieFile, leftLottieFileNight, rightLottieFileNight;
         private HorizontalPullLayout.LayoutParams leftLayoutParams, rightLayoutParams, centerLayoutParams;
         private float bounceRatio;     //配置 RecyclerView fling 到结尾弹出的 lottie比例(0~1) , 设置0 关闭弹出效果
         private int style;
+        private boolean vibrate;       //配置跳转震动
 
         public Builder() {
+        }
+
+        /**
+         * 提供一套默认配置
+         *
+         * @param useLargeLottie
+         */
+        public Builder(boolean useLargeLottie) {
+            maxDis(ScreenUtils.dp2px(150))    //配置最大可以拉出的距离  像素值
+                    .limit(ScreenUtils.dp2px(53))       //配置 计算 progress的 最大距离,  会根据当前拉出的像素/该值  计算progress
+                    .style(HorizontalPullLayout.STYLE_STICKY)
+                    .bounceRatio(0.3f)
+                    .threshold(0.97f)                    //配置 跳转的阈值 , 大于该值 会回调onDragOver() 方法  取值(0~1  对应 progress)
+                    .vibrate(true)
+                    .rightLottie(useLargeLottie ?                               //配置 右侧lottie动画 日间
+                            "lottie/news_base_horizontal_list_more_large.json" :
+                            "lottie/news_base_horizontal_list_more_small.json")
+                    .rightLottieNight(useLargeLottie ?                          //配置 右侧lottie动画 夜间
+                            "lottie/night_news_base_horizontal_list_more_small.json" :
+                            "lottie/night_news_base_horizontal_list_more_small.json")
+                    .rightLP(new HorizontalPullLayout.LayoutParams((int) ScreenUtils.dp2px(53), HorizontalPullLayout.LayoutParams.MATCH_PARENT));
         }
 
         //设置能拉出的最大距离
@@ -162,6 +210,12 @@ public class PullLayoutConfig {
             return this;
         }
 
+        //设置跳转的震动效果
+        public Builder vibrate(boolean v) {
+            this.vibrate = v;
+            return this;
+        }
+
         //配置界面跳转回调
         public Builder listener(HorizontalPullLayout.OnDragListener listener) {
             this.mDragListener = listener;
@@ -174,9 +228,19 @@ public class PullLayoutConfig {
             return this;
         }
 
+        public Builder leftLottieNight(String leftLottieFileNight) {
+            this.leftLottieFileNight = leftLottieFileNight;
+            return this;
+        }
+
         //右侧lottie文件
         public Builder rightLottie(String rightLottieFile) {
             this.rightLottieFile = rightLottieFile;
+            return this;
+        }
+
+        public Builder rightLottieNight(String rightLottieFileNight) {
+            this.rightLottieFileNight = rightLottieFileNight;
             return this;
         }
 
@@ -244,11 +308,14 @@ public class PullLayoutConfig {
             config.setDragListener(this.mDragListener);
             config.setLeftLottieFile(this.leftLottieFile);
             config.setRightLottieFile(this.rightLottieFile);
+            config.setLeftLottieFileNight(this.leftLottieFileNight);
+            config.setRightLottieFileNight(this.rightLottieFileNight);
             config.setLeftLayoutParams(this.leftLayoutParams);
             config.setCenterLayoutParams(this.centerLayoutParams);
             config.setRightLayoutParams(this.rightLayoutParams);
             config.setBounceRatio(this.bounceRatio);
             config.setStyle(this.style);
+            config.setVibrate(this.vibrate);
             return config;
         }
     }
