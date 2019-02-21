@@ -83,7 +83,8 @@ public class NetTestActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    String uri = "http://bjnewsrec-cv.ws.126.net/three467wuE40I9Jtct7fyPFgLQoTW3dCLS2gWkjf3xs0B2ybbksb1540134205248.jpg";
+                    String uri = "http://10.234.122.136:8080/SpringTest_war_exploded/hi/say";
+//                    String uri = "http://bjnewsrec-cv.ws.126.net/three467wuE40I9Jtct7fyPFgLQoTW3dCLS2gWkjf3xs0B2ybbksb1540134205248.jpg";
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder().url(uri).build();
                     Response response = client.newCall(request).execute();

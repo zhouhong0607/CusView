@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements GuideAdapter.Clic
         mList.add(new GuideBean("Vertical Recycler ", ActivityDefine.VERTICAL_RECYCLER_TEST));
         /************普通test****************/
         mList.add(new GuideBean("Plugin Test ", ActivityDefine.PLUGIN_APP_TEST));
+        //ConstraintLayout
+        mList.add(new GuideBean("ConstraintLayout Test ", ActivityDefine.CONSTRAINT_LAYOUT_TEST));
 
     }
 

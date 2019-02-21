@@ -2,6 +2,7 @@ package com.example.macroz.myapplication.constant;
 
 import com.example.macroz.myapplication.customview.activity.CameraTestActivity;
 import com.example.macroz.myapplication.customview.activity.ColorMatrixTestActivity;
+import com.example.macroz.myapplication.customview.activity.ConstraintLayoutTestActivity;
 import com.example.macroz.myapplication.customview.activity.CubeActivity;
 import com.example.macroz.myapplication.customview.activity.FoldLayoutTestActivity;
 import com.example.macroz.myapplication.customview.activity.MatrixApiTestActivity;
@@ -90,6 +91,9 @@ public class ActivityDefine {
      * 测试插件化
      */
     public static final String PLUGIN_APP_TEST = PluginTestActivity.class.getName();
-
+    /**
+     * ConstraintLayoutTest
+     */
+    public static final String CONSTRAINT_LAYOUT_TEST = ConstraintLayoutTestActivity.class.getName();
 
 }
