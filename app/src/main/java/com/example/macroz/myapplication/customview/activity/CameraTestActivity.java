@@ -12,11 +12,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.macroz.myapplication.R;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 import com.example.macroz.myapplication.customview.view.CameraTestView;
 
-public class CameraTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class CameraTestActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "CameraTestActivity";
 

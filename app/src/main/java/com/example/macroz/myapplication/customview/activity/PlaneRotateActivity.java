@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.macroz.myapplication.R;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 
-public class PlaneRotateActivity extends AppCompatActivity {
+public class PlaneRotateActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

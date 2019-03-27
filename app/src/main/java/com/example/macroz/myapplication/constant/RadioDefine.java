@@ -1,5 +1,7 @@
 package com.example.macroz.myapplication.constant;
 
+import android.view.View;
+
 /**
  * 类描述:
  * 创建人:   macroz
@@ -9,6 +11,7 @@ package com.example.macroz.myapplication.constant;
  * 修改备注:
  */
 public class RadioDefine {
+
     /**
      * 变换方法
      */

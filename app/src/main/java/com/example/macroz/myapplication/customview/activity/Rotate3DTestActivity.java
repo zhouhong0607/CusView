@@ -8,8 +8,9 @@ import android.widget.ImageView;
 
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.animator.Rotate3dAnimation;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 
-public class Rotate3DTestActivity extends AppCompatActivity {
+public class Rotate3DTestActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

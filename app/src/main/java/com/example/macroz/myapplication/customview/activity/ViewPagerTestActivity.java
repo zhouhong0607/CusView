@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.macroz.myapplication.R;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.customview.fragment.PagerItemFragment;
 import com.example.macroz.myapplication.customview.adapter.MyFragmentPagerAdapter;
@@ -20,7 +21,7 @@ import com.example.macroz.myapplication.customview.view.MyViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerTestActivity extends AppCompatActivity {
+public class ViewPagerTestActivity extends BaseActivity {
     private MyViewPager mViewPager;
     private List<View> mViews;
     private List<Fragment> mFragments;

@@ -177,8 +177,8 @@ public class PullLayoutConfig {
          * @param useLargeLottie
          */
         public Builder(boolean useLargeLottie) {
-            maxDis(ScreenUtils.dp2px(150))    //配置最大可以拉出的距离  像素值
-                    .limit(ScreenUtils.dp2px(53))       //配置 计算 progress的 最大距离,  会根据当前拉出的像素/该值  计算progress
+            maxDis(ScreenUtils.Companion.dp2px(150))    //配置最大可以拉出的距离  像素值
+                    .limit(ScreenUtils.Companion.dp2px(53))       //配置 计算 progress的 最大距离,  会根据当前拉出的像素/该值  计算progress
                     .style(HorizontalPullLayout.STYLE_STICKY)
                     .bounceRatio(0.3f)
                     .threshold(0.97f)                    //配置 跳转的阈值 , 大于该值 会回调onDragOver() 方法  取值(0~1  对应 progress)
@@ -189,7 +189,7 @@ public class PullLayoutConfig {
                     .rightLottieNight(useLargeLottie ?                          //配置 右侧lottie动画 夜间
                             "lottie/night_news_base_horizontal_list_more_small.json" :
                             "lottie/night_news_base_horizontal_list_more_small.json")
-                    .rightLP(new HorizontalPullLayout.LayoutParams((int) ScreenUtils.dp2px(53), HorizontalPullLayout.LayoutParams.MATCH_PARENT));
+                    .rightLP(new HorizontalPullLayout.LayoutParams((int) ScreenUtils.Companion.dp2px(53), HorizontalPullLayout.LayoutParams.MATCH_PARENT));
         }
 
         //设置能拉出的最大距离

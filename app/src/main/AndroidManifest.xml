@@ -38,7 +38,9 @@
         <activity android:name=".newsapptest.activity.HorizontalRecyclerTest" />
         <activity android:name=".newsapptest.activity.VerticalRecyclerTest" />
         <activity android:name=".plugin.PluginTestActivity" />
-        <activity android:name=".customview.activity.ConstraintLayoutTestActivity"></activity>
+        <activity android:name=".customview.activity.ConstraintLayoutTestActivity" />
+        <activity android:name=".customview.activity.TraditionFeedActivity" />
+        <activity android:name=".customview.activity.ConsFeedActivity"></activity>
     </application>
 
 </manifest>

@@ -9,8 +9,9 @@ import android.widget.Toast;
 
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.customview.view.CubeLayout;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 
-public class CubeActivity extends AppCompatActivity {
+public class CubeActivity extends BaseActivity {
 
     private final static String TAG = "CubeActivity";
     private CubeLayout mCubeLayout;

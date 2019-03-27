@@ -4,17 +4,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.macroz.myapplication.R;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 import com.example.macroz.myapplication.customview.view.MatrixApiTextView;
 
-public class MatrixApiTestActivity extends AppCompatActivity {
+public class MatrixApiTestActivity extends BaseActivity {
     private MatrixApiTextView mMatrixView;
 
     @Override
@@ -25,7 +27,10 @@ public class MatrixApiTestActivity extends AppCompatActivity {
         initMethodView();
         initInputView();
         initButtonView();
-
+        int i = 10;
+        while (i-- > 0) {
+            Log.d(getTag(), String.valueOf(i));
+        }
     }
 
     //选择方法 translate rotate scale skew

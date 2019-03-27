@@ -6,8 +6,9 @@ import android.widget.RadioGroup;
 
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.customview.view.PolygonView;
+import com.example.macroz.myapplication.mainactivity.BaseActivity;
 
-public class PolyToPolyTestActivity extends AppCompatActivity {
+public class PolyToPolyTestActivity extends BaseActivity {
     private PolygonView mPolygonView;
 
 
