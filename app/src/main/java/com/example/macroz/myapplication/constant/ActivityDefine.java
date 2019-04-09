@@ -29,71 +29,71 @@ public class ActivityDefine {
     /**
      * camera test   界面
      */
-    public static final String CAMERA_TEST_ACTIVITY = CameraTestActivity.class.getName();
+    public static final  Class<?> CAMERA_TEST_ACTIVITY = CameraTestActivity.class;
     /**
      * Matrix Api test
      */
-    public static final String MATRIX_API_TEST_ACTIVITY = MatrixApiTestActivity.class.getName();
+    public static final  Class<?> MATRIX_API_TEST_ACTIVITY = MatrixApiTestActivity.class;
     /**
      * Matrix pre post Test   界面
      */
-    public static final String MATRIX_PRE_POST_TEST_ACTIVITY = MatrixPrePostTestActivity.class.getName();
+    public static final  Class<?> MATRIX_PRE_POST_TEST_ACTIVITY = MatrixPrePostTestActivity.class;
     /**
      * 小飞机    界面
      */
-    public static final String MATRIX_TEST_ROTATE = PlaneRotateActivity.class.getName();
+    public static final  Class<?> MATRIX_TEST_ROTATE = PlaneRotateActivity.class;
     /**
      * 魔方 测试界面
      */
-    public static final String MATRIX_TEST_CUBE = CubeActivity.class.getName();
+    public static final  Class<?> MATRIX_TEST_CUBE = CubeActivity.class;
     /**
      * polygon 测试界面
      */
-    public static final String MATRIX_TEST_POLYGON = PolyToPolyTestActivity.class.getName();
+    public static final  Class<?> MATRIX_TEST_POLYGON = PolyToPolyTestActivity.class;
     /**
      * 折叠布局测试
      */
-    public static final String MATRIX_FOLDLAYOUT_TEST = FoldLayoutTestActivity.class.getName();
+    public static final  Class<?> MATRIX_FOLDLAYOUT_TEST = FoldLayoutTestActivity.class;
     /**
      * 谷歌官方3D旋转测试
      */
-    public static final String ROTATE_3D_TEST = Rotate3DTestActivity.class.getName();
+    public static final  Class<?> ROTATE_3D_TEST = Rotate3DTestActivity.class;
 
 
     /**
      * FlexLayout , Glide测试
      */
-    public static final String TEST_NET = NetTestActivity.class.getName();
+    public static final  Class<?> TEST_NET = NetTestActivity.class;
     /**
      * lottie 测试
      */
-    public static final String TEST_LOTTIE = LottieTestActivity.class.getName();
+    public static final  Class<?> TEST_LOTTIE = LottieTestActivity.class;
 
 
     /**
      * ViewPager测试
      */
-    public static final String TEST_VIEWPAGER = ViewPagerTestActivity.class.getName();
+    public static final  Class<?> TEST_VIEWPAGER = ViewPagerTestActivity.class;
 
     /**
      * 测试ColorMatrix
      */
-    public static final String TEST_COLOR_MATRIX = ColorMatrixTestActivity.class.getName();
+    public static final  Class<?> TEST_COLOR_MATRIX = ColorMatrixTestActivity.class;
     /**
      * 横滑recycler
      */
-    public static final String HORIZONTAL_RECYCLER_TEST = HorizontalRecyclerTest.class.getName();
+    public static final  Class<?> HORIZONTAL_RECYCLER_TEST = HorizontalRecyclerTest.class;
     /**
      * 垂直类型recycler（新闻列表）
      */
-    public static final String VERTICAL_RECYCLER_TEST = VerticalRecyclerTest.class.getName();
+    public static final  Class<?> VERTICAL_RECYCLER_TEST = VerticalRecyclerTest.class;
     /**
      * 测试插件化
      */
-    public static final String PLUGIN_APP_TEST = PluginTestActivity.class.getName();
+    public static final  Class<?> PLUGIN_APP_TEST = PluginTestActivity.class;
     /**
      * ConstraintLayoutTest
      */
-    public static final String CONSTRAINT_LAYOUT_TEST = ConstraintLayoutTestActivity.class.getName();
+    public static final  Class<?> CONSTRAINT_LAYOUT_TEST = ConstraintLayoutTestActivity.class;
 
 }

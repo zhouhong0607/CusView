@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".customview.activity.ConsPHTestActivity"></activity>
+        <activity android:name=".customview.activity.ConsDemoActivity" />
         <activity android:name=".mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +42,7 @@
         <activity android:name=".plugin.PluginTestActivity" />
         <activity android:name=".customview.activity.ConstraintLayoutTestActivity" />
         <activity android:name=".customview.activity.TraditionFeedActivity" />
-        <activity android:name=".customview.activity.ConsFeedActivity"></activity>
+        <activity android:name=".customview.activity.ConsFeedActivity" />
     </application>
 
 </manifest>

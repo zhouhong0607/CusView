@@ -15,7 +15,7 @@ import android.widget.Toast
  abstract class BaseActivity : AppCompatActivity() {
     protected val tag = this::class.java.simpleName
 
-    fun Context.longToast(msg: String = "") {
+    fun Context.toast(msg: String = "") {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 

@@ -1,67 +1,30 @@
 package com.example.macroz.myapplication.customview.activity
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.support.constraint.*
-import android.support.v7.widget.CardView
-import android.transition.TransitionManager
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
+import android.support.v7.widget.LinearLayoutManager
 import com.example.macroz.myapplication.R
+import com.example.macroz.myapplication.kotlin.TurnTo
 import com.example.macroz.myapplication.mainactivity.BaseActivity
+import com.example.macroz.myapplication.mainactivity.GuideAdapter
+import kotlinx.android.synthetic.main.contraint_test_layout.*
 
 class ConstraintLayoutTestActivity : BaseActivity() {
 
-    lateinit var cons: ConstraintLayout
-    var old = false
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.constraint_set_test_1)
-
-        cons = findViewById(R.id.constraint_set_layout)
-        val set1 = ConstraintSet();
-        val set2 = ConstraintSet();
-        set1.clone(cons);
-        set2.clone(this@ConstraintLayoutTestActivity, R.layout.constraint_set_test_2);
-
-
-        cons.setOnConstraintsChanged(object : ConstraintsChangedListener() {
-            override fun preLayoutChange(stateId: Int, constraintId: Int) {
-                super.preLayoutChange(stateId, constraintId)
-                Log.d(tag, "preLayoutChange   stateId:$stateId  , constraintId: $constraintId")
-            }
-
-            override fun postLayoutChange(stateId: Int, constraintId: Int) {
-                super.postLayoutChange(stateId, constraintId)
-                Log.d(tag, "postLayoutChange   stateId: $stateId , constraintId: $constraintId")
-            }
-        })
-
-
-        cons.setOnClickListener {
-            TransitionManager.beginDelayedTransition(cons)
-            if (old) {
-                set1.applyTo(cons)
-            } else {
-                set2.applyTo(cons);
-            }
-            old = !old
-
+        setContentView(R.layout.contraint_test_layout)
+        consRecycler?.run {
+            layoutManager=LinearLayoutManager(this@ConstraintLayoutTestActivity)
+            adapter=GuideAdapter(initData())
         }
+    }
 
-        val button = findViewById<Button>(R.id.button10)
-        val pro = ConstraintProperties(button)
-
-        findViewById<Button>(R.id.button7).setOnClickListener {
-            pro.removeFromHorizontalChain()
-        }
-
+    private fun initData():Array<TurnTo>{
+        return arrayOf(
+                TurnTo("PlayGround",R.layout.activity_cons_demo),
+                TurnTo("Motion1 Basic",R.layout.motion_01),
+                TurnTo("PlaceHolder Test",ConsPHTestActivity::class.java)
+        )
     }
 
 

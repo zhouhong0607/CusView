@@ -1,29 +1,27 @@
 package com.example.macroz.myapplication.mainactivity
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import com.example.macroz.myapplication.R
 import com.example.macroz.myapplication.constant.ActivityDefine
+import com.example.macroz.myapplication.kotlin.TurnTo
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), GuideAdapter.ClickGuideListener {
-
-    private lateinit var mList: ArrayList<GuideBean>
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initData()
-        findViewById<RecyclerView>(R.id.main_guide_recycler).apply {
-            this?.layoutManager = LinearLayoutManager(this@MainActivity)
-            this?.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayout.HORIZONTAL))
-            this?.adapter = GuideAdapter(mList, this@MainActivity)
+        main_guide_recycler?.apply {
+            this.layoutManager = LinearLayoutManager(this@MainActivity)
+            this.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayout.HORIZONTAL))
+            this.adapter = GuideAdapter(initData())
         }
         tryToRequestPermission()
     }
@@ -52,71 +50,37 @@ class MainActivity : BaseActivity(), GuideAdapter.ClickGuideListener {
     /**
      * 初始化各个界面跳转数据
      */
-    private fun initData() {
-        mList = ArrayList()
-        //Matrix Api 界面
-        mList.add(GuideBean("Matrix Api 测试", ActivityDefine.MATRIX_API_TEST_ACTIVITY))
-        //Matrix pre post test 界面
-        mList.add(GuideBean("Matrix Pre/Post 测试", ActivityDefine.MATRIX_PRE_POST_TEST_ACTIVITY))
-        //Camera test 界面
-        mList.add(GuideBean("Camera 测试", ActivityDefine.CAMERA_TEST_ACTIVITY))
-        //小飞机  转圈圈
-        mList.add(GuideBean("小飞机", ActivityDefine.MATRIX_TEST_ROTATE))
-        //poly to poly
-        mList.add(GuideBean("Polygon 测试", ActivityDefine.MATRIX_TEST_POLYGON))
-        //折叠布局测试
-        mList.add(GuideBean("FoldLayout 测试", ActivityDefine.MATRIX_FOLDLAYOUT_TEST))
-        //谷歌 3D旋转 animation 测试
-        mList.add(GuideBean("Google 3D Rotate测试", ActivityDefine.ROTATE_3D_TEST))
-        //cube  魔方界面
-        mList.add(GuideBean("Cube 测试", ActivityDefine.MATRIX_TEST_CUBE))
-        mList.add(GuideBean("Cube ViewPager 测试", ActivityDefine.TEST_VIEWPAGER))
-        /********************news app测试部分 */
-        mList.add(GuideBean("Lottie Test", ActivityDefine.TEST_LOTTIE))
-        mList.add(GuideBean("Net Test", ActivityDefine.TEST_NET))
-
-        //color matrix
-        mList.add(GuideBean("Color Matrix ", ActivityDefine.TEST_COLOR_MATRIX))
-        //横滑recycler
-        mList.add(GuideBean("Horizontal Recycler ", ActivityDefine.HORIZONTAL_RECYCLER_TEST))
-        //垂直 recycler
-        mList.add(GuideBean("Vertical Recycler ", ActivityDefine.VERTICAL_RECYCLER_TEST))
-        /************普通test */
-        mList.add(GuideBean("Plugin Test ", ActivityDefine.PLUGIN_APP_TEST))
-        //ConstraintLayout
-        mList.add(GuideBean("ConstraintLayout Test ", ActivityDefine.CONSTRAINT_LAYOUT_TEST))
-
+    private fun initData(): Array<TurnTo> {
+        return arrayOf(
+                TurnTo("Matrix Api 测试", ActivityDefine.MATRIX_API_TEST_ACTIVITY),
+                TurnTo("Matrix Pre/Post 测试", ActivityDefine.MATRIX_PRE_POST_TEST_ACTIVITY),
+                //Camera test 界面
+                TurnTo("Camera 测试", ActivityDefine.CAMERA_TEST_ACTIVITY),
+                //小飞机  转圈圈
+                TurnTo("小飞机", ActivityDefine.MATRIX_TEST_ROTATE),
+                //poly to poly
+                TurnTo("Polygon 测试", ActivityDefine.MATRIX_TEST_POLYGON),
+                //折叠布局测试
+                TurnTo("FoldLayout 测试", ActivityDefine.MATRIX_FOLDLAYOUT_TEST),
+                //谷歌 3D旋转 animation 测试
+                TurnTo("Google 3D Rotate测试", ActivityDefine.ROTATE_3D_TEST),
+                //cube  魔方界面
+                TurnTo("Cube 测试", ActivityDefine.MATRIX_TEST_CUBE),
+                TurnTo("Cube ViewPager 测试", ActivityDefine.TEST_VIEWPAGER),
+                /********************news app测试部分 */
+                TurnTo("Lottie Test", ActivityDefine.TEST_LOTTIE),
+                TurnTo("Net Test", ActivityDefine.TEST_NET),
+                //color matrix
+                TurnTo("Color Matrix ", ActivityDefine.TEST_COLOR_MATRIX),
+                //横滑recycler
+                TurnTo("Horizontal Recycler ", ActivityDefine.HORIZONTAL_RECYCLER_TEST),
+                //垂直 recycler
+                TurnTo("Vertical Recycler ", ActivityDefine.VERTICAL_RECYCLER_TEST),
+                /************普通test */
+                TurnTo("Plugin Test ", ActivityDefine.PLUGIN_APP_TEST),
+                //ConstraintLayout
+                TurnTo("ConstraintLayout Test ", ActivityDefine.CONSTRAINT_LAYOUT_TEST)
+                )
     }
-
-    /**
-     * 点击后跳往对应页面
-     *
-     * @param holder
-     * @param guideBean
-     */
-    override fun onClickGuideView(holder: GuideAdapter.ViewHolder, guideBean: GuideBean) {
-
-        holder.itemView.postDelayed({
-            val intent = getStartIntent(guideBean.className)
-            if (intent != null) {
-                startActivity(intent)
-            }
-        }, 150)
-
-
-    }
-
-    private fun getStartIntent(className: String): Intent? {
-        var intent: Intent? = null
-        try {
-            val clazz = Class.forName(className)
-            intent = Intent(this, clazz)
-        } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
-        }
-
-        return intent
-    }
-
 
 }

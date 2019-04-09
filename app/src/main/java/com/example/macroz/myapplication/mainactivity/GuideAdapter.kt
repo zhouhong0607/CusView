@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bumptech.glide.Glide.init
-
 import com.example.macroz.myapplication.R
+import com.example.macroz.myapplication.kotlin.TurnTo
+import com.example.macroz.myapplication.utils.jumpTo
 
 /**
  * 类描述:   主页面 导航 recyclerView 的adapter
@@ -17,9 +17,9 @@ import com.example.macroz.myapplication.R
  * 修改时间: 2018/8/14 下午3:05
  * 修改备注:
  */
-class GuideAdapter(val mList: List<GuideBean>, val mClickGuideListener: ClickGuideListener?) : RecyclerView.Adapter<GuideAdapter.ViewHolder>() {
+class GuideAdapter(val mList: Array<TurnTo>) : RecyclerView.Adapter<GuideAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.guide_holder_item_view, parent, false), null)
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.guide_holder_item_view, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -27,7 +27,7 @@ class GuideAdapter(val mList: List<GuideBean>, val mClickGuideListener: ClickGui
 
         holder.mTitleView?.text = guideBean.title
         holder.itemView.setOnClickListener {
-            mClickGuideListener?.onClickGuideView(holder, guideBean)
+            (it.context as BaseActivity).jumpTo(guideBean)
         }
     }
 
@@ -36,14 +36,10 @@ class GuideAdapter(val mList: List<GuideBean>, val mClickGuideListener: ClickGui
         return mList.size
     }
 
-    class ViewHolder(itemView: View, var mTitleView: TextView?) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, var mTitleView: TextView? = null) : RecyclerView.ViewHolder(itemView) {
         init {
             mTitleView = itemView.findViewById(R.id.guide_item_title)
         }
-    }
-
-    interface ClickGuideListener {
-        fun onClickGuideView(holder: ViewHolder, guideBean: GuideBean)
     }
 
 }

@@ -1,10 +1,8 @@
 package com.example.macroz.myapplication.newsapptest.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ImageView
-import android.widget.Toast
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,6 +11,7 @@ import com.example.macroz.myapplication.R
 import com.example.macroz.myapplication.mainactivity.BaseActivity
 import com.example.macroz.myapplication.newsapptest.bean.LabelBean
 import com.example.macroz.myapplication.newsapptest.view.LabelSelectLayout
+import com.example.macroz.myapplication.retrofit.service.SpringTestService
 
 import java.io.IOException
 import java.util.ArrayList
@@ -23,6 +22,7 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import retrofit2.Retrofit
 
 class NetTestActivity : BaseActivity() {
 
@@ -39,12 +39,13 @@ class NetTestActivity : BaseActivity() {
         glideImgView = findViewById(R.id.glide_test_img)
         initData()
 
-        mLabelSelectLayout.setOnSelectItemListener { longToast(it.label) }
+        mLabelSelectLayout.setOnSelectItemListener { toast(it.label) }
 
         mLabelSelectLayout.addChildren(mBeanList)
 
         testGlide()
         testOkHttp()
+        testRetrofit()
     }
 
     fun initData() {
@@ -103,5 +104,10 @@ class NetTestActivity : BaseActivity() {
 
     }
 
+    fun testRetrofit() {
+        var refrofit = Retrofit.Builder().baseUrl("http://10.234.122.136:8080/").build()
+        var service = refrofit.create(SpringTestService::class.java)
+
+    }
 
 }

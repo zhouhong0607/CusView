@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customview.activity.ConsDemoActivity">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Button"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="461dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierAllowsGoneWidgets="false"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="button4,button11"
+
+
+        tools:layout_editor_absoluteX="411dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="88dp"
+        android:layout_height="50dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="button8,button11" />
+
+</android.support.constraint.ConstraintLayout>
