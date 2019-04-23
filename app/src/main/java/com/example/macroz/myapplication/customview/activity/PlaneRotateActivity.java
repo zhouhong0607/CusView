@@ -1,10 +1,9 @@
 package com.example.macroz.myapplication.customview.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.mainactivity.BaseActivity;
+import com.example.macroz.myapplication.activity.BaseActivity;
 
 public class PlaneRotateActivity extends BaseActivity {
 

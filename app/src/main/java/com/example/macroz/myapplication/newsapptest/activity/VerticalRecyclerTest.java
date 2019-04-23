@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.mainactivity.BaseActivity;
+import com.example.macroz.myapplication.activity.BaseActivity;
 import com.example.macroz.myapplication.newsapptest.adapter.VerticalAdapter;
 import com.example.macroz.myapplication.newsapptest.bean.AdItemBean;
 

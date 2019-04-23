@@ -1,6 +1,5 @@
 package com.example.macroz.myapplication.customview.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +9,7 @@ import android.widget.Spinner;
 import com.example.macroz.myapplication.R;
 import com.example.macroz.myapplication.constant.MatrixMethodDefine;
 import com.example.macroz.myapplication.customview.view.MatrixPrePostTestView;
-import com.example.macroz.myapplication.mainactivity.BaseActivity;
+import com.example.macroz.myapplication.activity.BaseActivity;
 
 public class MatrixPrePostTestActivity extends BaseActivity implements View.OnClickListener {
 

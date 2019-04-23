@@ -1,11 +1,10 @@
 package com.example.macroz.myapplication.utils
 
-import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.TypedValue
 
-import com.example.macroz.myapplication.mainactivity.BaseApplication
+import com.example.macroz.myapplication.activity.BaseApplication
 
 /**
  *

@@ -1,6 +1,5 @@
 package com.example.macroz.myapplication.customview.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,7 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.mainactivity.BaseActivity;
+import com.example.macroz.myapplication.activity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 import com.example.macroz.myapplication.customview.view.MatrixApiTextView;

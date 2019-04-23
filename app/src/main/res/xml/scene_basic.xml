@@ -4,8 +4,8 @@
 
 
     <Transition
-        app:constraintSetEnd="@id/motion_scene_01_end"
-        app:constraintSetStart="@id/motion_scene_01_start"
+        app:constraintSetEnd="@id/motion_scene_01_basic_end"
+        app:constraintSetStart="@id/motion_scene_01_basic_start"
         >
 
         <!--默认dragDown-->
@@ -16,7 +16,7 @@
     </Transition>
 
 
-    <ConstraintSet android:id="@+id/motion_scene_01_start">
+    <ConstraintSet android:id="@+id/motion_scene_01_basic_start">
         <Constraint
             android:id="@id/motion_view_01"
             android:layout_width="60dp"
@@ -30,7 +30,7 @@
         </Constraint>
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/motion_scene_01_end">
+    <ConstraintSet android:id="@+id/motion_scene_01_basic_end">
         <Constraint
             android:id="@id/motion_view_01"
             android:layout_width="60dp"

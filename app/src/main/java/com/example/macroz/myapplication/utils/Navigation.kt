@@ -1,12 +1,10 @@
 package com.example.macroz.myapplication.utils
 
-import android.content.Context
 import android.content.Intent
 import com.example.macroz.myapplication.customview.activity.ConsDemoActivity
 import com.example.macroz.myapplication.kotlin.LAYOUT_ID
 import com.example.macroz.myapplication.kotlin.TurnTo
-import com.example.macroz.myapplication.mainactivity.BaseActivity
-import com.example.macroz.myapplication.mainactivity.MainActivity
+import com.example.macroz.myapplication.activity.BaseActivity
 
 /**
  * 有Activity  启动新的Activity

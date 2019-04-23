@@ -3,7 +3,7 @@ package com.example.macroz.myapplication.customview.activity
 import android.os.Bundle
 import com.example.macroz.myapplication.R
 import com.example.macroz.myapplication.kotlin.LAYOUT_ID
-import com.example.macroz.myapplication.mainactivity.BaseActivity
+import com.example.macroz.myapplication.activity.BaseActivity
 
 class ConsDemoActivity : BaseActivity() {
 

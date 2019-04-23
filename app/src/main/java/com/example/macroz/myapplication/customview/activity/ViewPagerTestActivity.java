@@ -4,14 +4,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.macroz.myapplication.R;
-import com.example.macroz.myapplication.mainactivity.BaseActivity;
+import com.example.macroz.myapplication.activity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.customview.fragment.PagerItemFragment;
 import com.example.macroz.myapplication.customview.adapter.MyFragmentPagerAdapter;

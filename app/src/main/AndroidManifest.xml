@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".mainactivity.BaseApplication"
+        android:name=".activity.BaseApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +16,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".customview.activity.ConsPHTestActivity"></activity>
+        <activity android:name=".customview.activity.ConsStateTestActivity"></activity>
+
+        <!--<receiver-->
+            <!--android:name=".receiver.InstalledReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
+                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
+
+                <!--<data android:scheme="package" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <activity android:name=".customview.activity.ConsPHTestActivity" />
         <activity android:name=".customview.activity.ConsDemoActivity" />
-        <activity android:name=".mainactivity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

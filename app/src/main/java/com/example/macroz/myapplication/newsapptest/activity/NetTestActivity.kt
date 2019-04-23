@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.macroz.myapplication.R
-import com.example.macroz.myapplication.mainactivity.BaseActivity
+import com.example.macroz.myapplication.activity.BaseActivity
 import com.example.macroz.myapplication.newsapptest.bean.LabelBean
 import com.example.macroz.myapplication.newsapptest.view.LabelSelectLayout
 import com.example.macroz.myapplication.retrofit.service.SpringTestService
@@ -83,17 +83,17 @@ class NetTestActivity : BaseActivity() {
                 if (response.isSuccessful) {
                     Log.d(tag, response.body()!!.string())
                 }
-
-                client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-
-                    }
-
-                    @Throws(IOException::class)
-                    override fun onResponse(call: Call, response: Response) {
-
-                    }
-                })
+//
+//                client.newCall(request).enqueue(object : Callback {
+//                    override fun onFailure(call: Call, e: IOException) {
+//
+//                    }
+//
+//                    @Throws(IOException::class)
+//                    override fun onResponse(call: Call, response: Response) {
+//
+//                    }
+//                })
 
 
             } catch (e: IOException) {
