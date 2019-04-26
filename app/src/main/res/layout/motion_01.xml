@@ -24,4 +24,11 @@
 
     <!--android:background="@color/green"-->
 
+
+    <com.example.macroz.myapplication.customview.view.RoundLayout
+        android:id="@+id/motion_view_02"
+        android:background="@color/green"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
 </android.support.constraint.motion.MotionLayout>

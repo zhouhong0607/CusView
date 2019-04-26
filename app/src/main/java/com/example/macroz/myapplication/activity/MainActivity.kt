@@ -12,6 +12,7 @@ import com.example.macroz.myapplication.constant.ActivityDefine
 import com.example.macroz.myapplication.kotlin.TurnTo
 import com.example.macroz.myapplication.customview.adapter.GuideAdapter
 import com.example.macroz.myapplication.receiver.InstalledReceiver
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

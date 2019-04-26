@@ -3,6 +3,7 @@ package com.example.macroz.myapplication.newsapptest.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.example.macroz.myapplication.R;
@@ -12,6 +13,15 @@ import com.example.macroz.myapplication.newsapptest.bean.AdItemBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class VerticalRecyclerTest extends BaseActivity {
     private static final String TAG = HorizontalRecyclerTest.class.getSimpleName();
@@ -41,6 +51,7 @@ public class VerticalRecyclerTest extends BaseActivity {
                 mRotateProcessor.dealAdRotate(dy, false);
             }
         });
+
     }
 
     private void initData() {
@@ -51,4 +62,5 @@ public class VerticalRecyclerTest extends BaseActivity {
         dataList.add(3, new AdItemBean("3"));
         dataList.add(10, new AdItemBean("10"));
     }
+
 }

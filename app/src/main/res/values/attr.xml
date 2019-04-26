@@ -3,4 +3,11 @@
     <declare-styleable name="MyLinearLayout">
         <attr name="orientation1" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="RoundLayout">
+        <attr name="rectangle_radius" format="float" />
+        <attr name="rectangle_radius_all" format="string" />
+    </declare-styleable>
+
+
 </resources>
