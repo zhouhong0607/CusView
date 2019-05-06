@@ -16,20 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".customview.activity.ConsStateTestActivity"></activity>
-
-        <!--<receiver-->
-            <!--android:name=".receiver.InstalledReceiver"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
-                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
-
-                <!--<data android:scheme="package" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
+        <activity android:name=".customview.activity.MotionCollapseTestActivity"></activity>
+        <activity android:name=".customview.activity.ConsStateTestActivity" /> <!-- <receiver -->
+        <!-- android:name=".receiver.InstalledReceiver" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.PACKAGE_ADDED" /> -->
+        <!-- <action android:name="android.intent.action.PACKAGE_REMOVED" /> -->
+        <!-- <data android:scheme="package" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
         <activity android:name=".customview.activity.ConsPHTestActivity" />
         <activity android:name=".customview.activity.ConsDemoActivity" />
         <activity android:name=".activity.MainActivity">

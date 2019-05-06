@@ -25,7 +25,7 @@ class ConstraintLayoutTestActivity : BaseActivity() {
                 TurnTo("PlaceHolder Test", ConsPHTestActivity::class.java),
                 TurnTo("State Test", ConsStateTestActivity::class.java),
                 TurnTo("Motion1 Basic", R.layout.motion_01),
-                TurnTo("Motion Collapse", R.layout.motion_collapse_toolbar)
+                TurnTo("Motion Collapse", MotionCollapseTestActivity::class.java)
         )
     }
 
