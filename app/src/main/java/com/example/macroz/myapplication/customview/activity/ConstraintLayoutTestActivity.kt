@@ -21,6 +21,7 @@ class ConstraintLayoutTestActivity : BaseActivity() {
 
     private fun initData(): Array<TurnTo> {
         return arrayOf(
+//                constraint_circle_menu  菜单
                 TurnTo("PlayGround", R.layout.activity_cons_demo),
                 TurnTo("PlaceHolder Test", ConsPHTestActivity::class.java),
                 TurnTo("State Test", ConsStateTestActivity::class.java),
