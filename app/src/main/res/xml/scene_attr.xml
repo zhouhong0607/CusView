@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
     <Transition
@@ -10,32 +11,32 @@
 
 
         <!--默认dragDown-->
-        <OnSwipe app:dragDirection="dragRight" />
+        <!--<OnSwipe app:dragDirection="dragRight" />-->
 
         <!--todo zh 这两个属性干嘛的？-->
         <!--app:touchAnchorId="@id/motion_view_01"-->
         <!--app:touchAnchorSide="right"-->
 
 
-        <!--<OnClick-->
-            <!--app:clickAction="toggle"-->
-            <!--app:target="@id/motion_view_01" />-->
+        <OnClick
+            app:clickAction="toggle"
+            app:target="@id/motion_view_01" />
 
 
         <KeyFrameSet>
-            <KeyAttribute
-            android:scaleX="3"
-            android:scaleY="3"
-            app:framePosition="50"
-            app:target="@id/motion_view_01" />
+            <!--<KeyAttribute-->
+            <!--android:scaleX="3"-->
+            <!--android:scaleY="3"-->
+            <!--app:framePosition="50"-->
+            <!--app:target="@id/motion_view_01" />-->
 
-            <KeyPosition
-                app:framePosition="50"
-                app:keyPositionType="pathRelative"
-                app:percentX="0.5"
-                app:percentY="0.5"
-                app:target="@id/motion_view_01"
-                />
+            <!--<KeyPosition-->
+                <!--app:framePosition="50"-->
+                <!--app:keyPositionType="pathRelative"-->
+                <!--app:percentX="0.5"-->
+                <!--app:percentY="0.5"-->
+                <!--app:target="@id/motion_view_01"-->
+                <!--/>-->
 
             <!--todo zh 这提莫的怎么用？？-->
             <!--<KeyCycle-->
@@ -43,16 +44,6 @@
                 <!--app:framePosition="50"-->
                 <!--app:target="@id/motion_view_01"-->
                 <!--app:waveShape="sin" />-->
-
-            <!--关键帧属性  自定义属性-->
-            <KeyAttribute
-            app:framePosition="50"
-            app:target="@id/motion_view_02" >
-                <CustomAttribute
-                    app:attributeName="corner"
-                    app:customIntegerValue="100" />
-            </KeyAttribute>
-
 
         </KeyFrameSet>
 
@@ -73,7 +64,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8"
-            app:pathMotionArc="startVertical">
+           >
+
+            <!--app:pathMotionArc="startVertical"-->
 
             <!--Saturation-->
             <!--Crossfade-->
@@ -85,23 +78,6 @@
             <CustomAttribute
                 app:attributeName="Crossfade"
                 app:customFloatValue="0" />
-
-
-        </Constraint>
-
-
-        <Constraint
-            android:id="@id/motion_view_02"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <CustomAttribute
-                app:attributeName="corner"
-                app:customIntegerValue="0" />
 
 
         </Constraint>
@@ -148,24 +124,6 @@
         <!--app:attributeName="backgroundColor"-->
         <!--app:customColorValue="@color/red"-->
         <!--/>-->
-
-
-        <Constraint
-            android:id="@id/motion_view_02"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <CustomAttribute
-                app:attributeName="corner"
-                app:customIntegerValue="0" />
-
-
-        </Constraint>
 
 
     </ConstraintSet>

@@ -5,14 +5,14 @@
 
     <Transition
         app:constraintSetEnd="@id/motion_scene_01_basic_end"
-        app:constraintSetStart="@id/motion_scene_01_basic_start"
-        >
+        app:constraintSetStart="@id/motion_scene_01_basic_start">
 
         <!--默认dragDown-->
         <OnSwipe
-        app:dragDirection="dragRight"
+            app:dragDirection="dragRight"
+            app:touchAnchorId="@id/motion_view_01"
+            app:touchAnchorSide="right" />
 
-             />
     </Transition>
 
 
@@ -27,6 +27,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
+
         </Constraint>
     </ConstraintSet>
 
@@ -40,9 +42,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
         </Constraint>
 
     </ConstraintSet>
-
-
 </MotionScene>

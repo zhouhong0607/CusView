@@ -21,11 +21,12 @@ class ConstraintLayoutTestActivity : BaseActivity() {
 
     private fun initData(): Array<TurnTo> {
         return arrayOf(
-//                constraint_circle_menu  菜单
                 TurnTo("PlayGround", R.layout.activity_cons_demo),
+                TurnTo("Menu", R.layout.constraint_circle_menu),
                 TurnTo("PlaceHolder Test", ConsPHTestActivity::class.java),
                 TurnTo("State Test", ConsStateTestActivity::class.java),
-                TurnTo("Motion1 Basic", R.layout.motion_01),
+                TurnTo("Motion Basic", R.layout.motion_basic),
+                TurnTo("Motion Attr", R.layout.motion_attr),
                 TurnTo("Motion Collapse", MotionCollapseTestActivity::class.java)
         )
     }

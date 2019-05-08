@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/scene_01">
+    app:layoutDescription="@xml/scene_attr">
 
     <android.support.constraint.utils.ImageFilterView
         android:id="@+id/motion_view_01"
@@ -22,13 +22,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--android:background="@color/green"-->
-
-
-    <com.example.macroz.myapplication.customview.view.RoundLayout
-        android:id="@+id/motion_view_02"
-        android:background="@color/green"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
 
 </android.support.constraint.motion.MotionLayout>

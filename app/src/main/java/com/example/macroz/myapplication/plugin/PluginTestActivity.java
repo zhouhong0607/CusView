@@ -32,14 +32,18 @@ public class PluginTestActivity extends AppCompatActivity {
 
         Resources pluginRes = getPluginResources(apkPath);
 
-        Drawable pluginDrawable = pluginRes.getDrawable(pluginRes.getIdentifier("plugin_icon", "drawable", "com.example.macroz.plugintestapplication"));
+        try {
+            Drawable pluginDrawable = pluginRes.getDrawable(pluginRes.getIdentifier("plugin_icon", "drawable", "com.example.macroz.plugintestapplication"));
 
-        String pluginText = pluginRes.getString(pluginRes.getIdentifier("plugin_text", "string", "com.example.macroz.plugintestapplication"));
+            String pluginText = pluginRes.getString(pluginRes.getIdentifier("plugin_text", "string", "com.example.macroz.plugintestapplication"));
 
-        TextView textView = findViewById(R.id.plugin_test_text);
-        ImageView imageView = findViewById(R.id.plugin_test_img);
-        textView.setText(pluginText);
-        imageView.setImageDrawable(pluginDrawable);
+            TextView textView = findViewById(R.id.plugin_test_text);
+            ImageView imageView = findViewById(R.id.plugin_test_img);
+            textView.setText(pluginText);
+            imageView.setImageDrawable(pluginDrawable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
