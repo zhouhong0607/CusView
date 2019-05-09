@@ -80,8 +80,8 @@
     <ConstraintSet android:id="@+id/motion_scene_circle_menu_end">
         <Constraint
             android:id="@+id/card_0"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="36dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="40dp"
@@ -94,8 +94,8 @@
 
         <Constraint
             android:id="@+id/card_1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="36dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="40dp"
@@ -106,8 +106,8 @@
             />
         <Constraint
             android:id="@+id/card_2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="36dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="40dp"
@@ -118,8 +118,8 @@
             />
         <Constraint
             android:id="@+id/card_3"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="36dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="40dp"
