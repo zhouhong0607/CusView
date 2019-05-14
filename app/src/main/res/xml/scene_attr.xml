@@ -24,19 +24,19 @@
 
 
         <KeyFrameSet>
-            <!--<KeyAttribute-->
-            <!--android:scaleX="3"-->
-            <!--android:scaleY="3"-->
-            <!--app:framePosition="50"-->
-            <!--app:target="@id/motion_view_01" />-->
+            <KeyAttribute
+            android:scaleX="3"
+            android:scaleY="3"
+            app:framePosition="50"
+            app:target="@id/motion_view_01" />
 
-            <!--<KeyPosition-->
-                <!--app:framePosition="50"-->
-                <!--app:keyPositionType="pathRelative"-->
-                <!--app:percentX="0.5"-->
-                <!--app:percentY="0.5"-->
-                <!--app:target="@id/motion_view_01"-->
-                <!--/>-->
+            <KeyPosition
+                app:framePosition="50"
+                app:keyPositionType="pathRelative"
+                app:percentX="0.5"
+                app:percentY="0.5"
+                app:target="@id/motion_view_01"
+                />
 
             <!--todo zh 这提莫的怎么用？？-->
             <!--<KeyCycle-->

@@ -18,7 +18,7 @@ class ConsStateTestActivity : BaseActivity() {
             it.postDelayed(object : Runnable {
                 override fun run() {
                     cons_state_test.setState(R.id.end, 0, 0)
-
+                    state_button.setText("end")
                 }
             }, 5000)
         }
