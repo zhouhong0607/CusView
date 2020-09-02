@@ -15,6 +15,10 @@ import com.example.macroz.myapplication.activity.BaseActivity;
 import com.example.macroz.myapplication.utils.Utils;
 import com.example.macroz.myapplication.constant.RadioDefine;
 import com.example.macroz.myapplication.customview.view.CameraTestView;
+import com.netease.apt_annotation.BindGo;
+import com.netease.apt_annotation.BindView;
+import com.netease.apt_api.AutoBind;
+import com.netease.apt_api.IBindHelper;
 
 public class CameraTestActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,12 +28,22 @@ public class CameraTestActivity extends BaseActivity implements View.OnClickList
     private int curSelectMethod = RadioDefine.RADIO_GROUP_METHOD_TRANSLATE;
     private int curSelectCoordinate = RadioDefine.RADIO_GROUP_COORDINATE_X;
     private float inputValue = 0.0f;
-    private EditText editText;
+
+    @BindView(value = R.id.edit_input, param = TAG)
+    public EditText editText;
+
+    public static final String KEY_GO = "KEY_GO_PARAM";
+    @BindGo(key = KEY_GO)
+    public GoCamerBean mGoCamerBean;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_test);
+
+        getIntent().putExtra(KEY_GO,new GoCamerBean("test"));
+
         initViews();
         getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -44,6 +58,9 @@ public class CameraTestActivity extends BaseActivity implements View.OnClickList
                 return false;
             }
         });
+
+//        mGoCamerBean = (GoCamerBean) getIntent().getSerializableExtra(KEY_GO);
+
     }
 
     private void initViews() {
@@ -93,7 +110,10 @@ public class CameraTestActivity extends BaseActivity implements View.OnClickList
 
     private void initOthers() {
         //输入框
-        editText = findViewById(R.id.edit_input);
+//        editText = findViewById(R.id.edit_input);
+
+        AutoBind.getInstance().inject(this);
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
